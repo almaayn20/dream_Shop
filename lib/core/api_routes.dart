@@ -4,7 +4,9 @@ class ApiConstants {
   static Map<String, String> getHeaders() {
     return {
       'Accept': 'application/json',
-      'xx-token': AuthBox.getAuthToken()!,
+      'xx-token':
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWRQZXJzb24iOjEsImlhdCI6MTcyMjYyOTc5MSwiZXhwIjoxNzMyOTk3NzkxfQ.qgzcznIyuN9vLDe1B7R9ejM14P5GjcKcgRQUwa70UW4'
+      //AuthBox.getAuthToken()!,
     };
   }
 

@@ -3,5 +3,9 @@ import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/core/errors/failure.dart';
 
 abstract class ProductRepo {
-  Future<Either<Failure, List<ProductEntity>>> getProducts();
+  Future<Either<Failure, List<ProductEntity>>> getProductsTopHome();
+  Future<Either<Failure, List<ProductEntity>>> getProductsByCategory(
+      int categoryId);
+  Future<Either<Failure, Stream<List<ProductEntity>>>> getProductsBySearch(
+      String searchWord);
 }

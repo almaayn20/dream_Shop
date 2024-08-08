@@ -6,6 +6,8 @@ import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/shadow.dart';
 import 'package:foody/core/constants/spacing.dart';
+import 'package:foody/screen_routes.dart';
+import 'package:get/get.dart';
 
 class SignUpSection extends StatelessWidget {
   const SignUpSection({
@@ -149,14 +151,17 @@ class SignUpSection extends StatelessWidget {
         ),
         RichText(
           text: TextSpan(
-            text: ("have_account? "),
+            text: ("have account? "),
             style: TextStyle(
               fontWeight: FontWeight.w300,
               fontSize: 16.sp,
             ),
             children: [
               TextSpan(
-                  recognizer: TapGestureRecognizer()..onTap = () {},
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Get.toNamed(ScreensRoutes.signInScreen);
+                    },
                   text: ("sign in"),
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,

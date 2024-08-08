@@ -1,6 +1,13 @@
+import 'package:foody/Features/category/category_binding.dart';
+import 'package:foody/Features/category/presentation/views/categories_view.dart';
+import 'package:foody/Features/home/home_binding.dart';
+import 'package:foody/Features/home/presentation/manger/home_state.dart';
+import 'package:foody/Features/home/presentation/views/home_navigation.dart';
+import 'package:foody/Features/home/presentation/views/home_screen.dart';
 import 'package:foody/Features/login/login_binding.dart';
 import 'package:foody/Features/login/presentation/views/login_screen.dart';
 import 'package:foody/Features/login/presentation/views/welcome_page.dart';
+import 'package:foody/Features/product/presentation/manger/products_base_state.dart';
 import 'package:foody/Features/product/presentation/views/products_screen.dart';
 import 'package:foody/Features/product/product_binding.dart';
 import 'package:foody/screen_routes.dart';
@@ -13,15 +20,21 @@ class ScreensList {
       page: () => SignInScreen(),
       binding: LoginBinding(),
     ),
-    GetPage(
-      name: ScreensRoutes.productsScreen,
-      page: () => ProductsScreen(),
-      binding: ProductBinding(),
-    ),
+
     GetPage(
       name: ScreensRoutes.welcomeScreen,
       page: () => WelcomeScreen(),
       binding: ProductBinding(),
+    ),
+    // GetPage(
+    //   name: ScreensRoutes.categoriesScreen,
+    //   page: () => CategoriesScreen(),
+    //   binding: CategoryBinding(),
+    // ),
+    GetPage(
+      name: ScreensRoutes.homeScreen,
+      page: () => HomeNavigationScreen(),
+      binding: HomeBinding(),
     ),
   ];
 }

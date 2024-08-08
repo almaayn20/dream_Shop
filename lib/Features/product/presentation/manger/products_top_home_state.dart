@@ -1,27 +1,24 @@
+import 'package:foody/Features/product/presentation/manger/products_base_state.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/use_cases/use_case.dart';
 import '../../domain/entities/product_entity.dart';
 import '../../domain/use_cases/get_products_use_case.dart';
 
-class ProductsController extends GetxController {
-  final GetProductsUseCase getProductsUseCase;
+class TopHomeProductsController extends ProductsBaseController {
+  final GetProductsTopHomeUseCase getProductsTopHomeUseCase;
 
-  ProductsController(this.getProductsUseCase);
-
-  var isLoading = false.obs;
-  var products = <ProductEntity>[].obs;
-  var errorMessage = ''.obs;
+  TopHomeProductsController(this.getProductsTopHomeUseCase);
 
   @override
   void onInit() {
-    fetchProducts();
+    fetchProductsTopHome();
     super.onInit();
   }
 
-  Future<void> fetchProducts() async {
+  Future<void> fetchProductsTopHome() async {
     isLoading.value = true;
-    var result = await getProductsUseCase.call(NoParam());
+    var result = await getProductsTopHomeUseCase.call(NoParam());
     result.fold((failure) {
       errorMessage.value = failure.message;
     }, (fetchedProducts) {

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/hive_boxes/auth_box.dart';
 import 'package:foody/core/services/app_services.dart';
+import 'package:foody/core/theme/theme.dart';
 import 'package:foody/screen_routes.dart';
 import 'package:foody/screens_list.dart';
 import 'package:get/get.dart';
@@ -35,20 +36,11 @@ class MyApp extends StatelessWidget {
         locale: localeController.language,
         translations: AppTranslation(),
         initialRoute: AuthBox.isUserLoggedIn()
-            ? ScreensRoutes.productsScreen
+            ? ScreensRoutes.homeScreen
             : ScreensRoutes.welcomeScreen,
         getPages: ScreensList.screensList,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: "SofiaPro",
-          textTheme: const TextTheme(
-            bodyLarge: TextStyle(fontWeight: FontWeight.w500),
-            bodyMedium: TextStyle(fontWeight: FontWeight.w500),
-          ).apply(
-            bodyColor: AppColors.dark100,
-            displayColor: AppColors.dark100,
-          ),
-        ),
+        theme: AppTheme.light(context),
       ),
     );
   }

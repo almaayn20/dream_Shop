@@ -11,4 +11,8 @@ abstract class UseCase2<Type, Param, Param2> {
       {required Param param, required Param2 param2});
 }
 
+abstract class UseCase3<Type, Param> {
+  Future<Either<Failure, Type>> call({required Param param});
+}
+
 class NoParam {}

@@ -1,49 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:foody/Features/home/presentation/manger/home_state.dart';
+import 'package:foody/Features/product/domain/entities/product_entity.dart';
+import 'package:foody/Features/product/presentation/manger/products_base_state.dart';
+import 'package:foody/Features/product/presentation/widgets/product_container.dart.dart';
+import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/localization/app_localization.dart';
 import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
 
-import '../../../../localization/local_controller.dart';
-import '../manger/products_state.dart';
+class ProductsScreen extends StatelessWidget {
+  final List<ProductEntity> products;
 
-class ProductsScreen extends GetView<ProductsController> {
+  const ProductsScreen({super.key, required this.products});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalization.products.tr),
         centerTitle: true,
-        leading: IconButton(
-            icon: Icon(Icons.access_alarm),
-            onPressed: () {
-              Get.toNamed(ScreensRoutes.welcomeScreen);
-              // AppLocallcontroller locallcontroller = Get.find();
-              // locallcontroller.changeLanguage(
-              //     locallcontroller.language.languageCode == 'ar' ? 'en' : 'ar');
-            }),
       ),
       body: Obx(() {
-        if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        if (controller.errorMessage.isNotEmpty) {
-          return Center(child: Text(controller.errorMessage.value));
-        }
-
         return Center(
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(AppSpacing.space20),
             child: GridView(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 1 / 1.73,
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
-                  crossAxisCount: 4),
+                  crossAxisCount: 2),
               children: [
                 ...List.generate(
-                  controller.products.length,
-                  (index) => Container(),
+                  products.length,
+                  (index) => ProductContainer(
+                    product: products[index],
+                    index: index,
+                    length: products.length,
+                  ),
                 )
               ],
             ),
