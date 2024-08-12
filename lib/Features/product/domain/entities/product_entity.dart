@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 part 'product_entity.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 2)
 class ProductEntity {
   @HiveField(0)
   final num productId;

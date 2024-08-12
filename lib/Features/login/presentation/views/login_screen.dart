@@ -164,8 +164,7 @@ class SignInScreen extends GetView<LoginController> {
                                   await controller.login(
                                       email.text, password.text);
                                   controller.authenticated.value == true
-                                      ? Get.toNamed(
-                                          ScreensRoutes.productsScreen)
+                                      ? Get.toNamed(ScreensRoutes.homeScreen)
                                       : snackBarCustom(
                                           context,
                                           controller.errorMessage.value,

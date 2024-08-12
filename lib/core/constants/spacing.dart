@@ -10,5 +10,6 @@ class AppSpacing {
   static double space24 = 24.w;
   static double space28 = 28.w;
   static double space32 = 32.w;
+  static double space37 = 37.w;
   static double space50 = 50.w;
 }

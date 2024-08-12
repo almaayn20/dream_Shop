@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 import 'package:foody/Features/login/domain/entities/user_entity.dart';
+import 'package:foody/Features/order/domain/entities/order_entity.dart';
+import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/hive_boxes/auth_box.dart';
@@ -46,6 +48,8 @@ Future<void> initialHive() async {
 void registerHiveAdapters() {
   Hive.registerAdapter(UserEntityAdapter());
   Hive.registerAdapter(ProductEntityAdapter());
+  Hive.registerAdapter(OrderEntityAdapter());
+  Hive.registerAdapter(OrderProductEntityAdapter());
 }
 
 Future<void> openHiveBoxes() async {

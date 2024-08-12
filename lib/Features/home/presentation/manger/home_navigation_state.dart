@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foody/Features/home/presentation/views/home_screen.dart';
 import 'package:foody/Features/home/data/models/home_navigation_model.dart';
+import 'package:foody/Features/order/presentation/views/cart_screen.dart';
 import 'package:get/get.dart';
 
 class HomeNavigationController extends GetxController {
@@ -10,20 +11,13 @@ class HomeNavigationController extends GetxController {
       icon: "assets/icons/home_tab.svg",
       page: HomeScreen(),
     ),
-    HomeNavigationModel(
-      icon: "assets/icons/location_tab.svg",
-      page: Container(),
-    ),
-    HomeNavigationModel(
-      icon: "assets/icons/cart_tab.svg",
-      page: Container(),
-    ),
+    HomeNavigationModel(icon: "assets/icons/cart_tab.svg", page: CartScreen()),
     HomeNavigationModel(
       icon: "assets/icons/favourite_tab.svg",
       page: Container(),
     ),
     HomeNavigationModel(
-      icon: "assets/icons/notification_tab.svg",
+      icon: "assets/icons/setting.svg",
       page: Container(),
     ),
   ].obs;

@@ -53,7 +53,6 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
         endPoint:
             ApiConstants.searchPorductsForCategory(categoryId.toString()));
     List<ProductEntity> products = getsProductsList(data);
-
     return products;
   }
 
@@ -72,7 +71,6 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
         const Duration(milliseconds: 200), () => debouncer.value = searchWord);
     Future.delayed(const Duration(milliseconds: 400))
         .then((_) => timer.cancel());
-
     return streamController.stream;
   }
 }
