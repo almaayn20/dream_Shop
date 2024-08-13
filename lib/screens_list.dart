@@ -7,6 +7,8 @@ import 'package:foody/Features/home/presentation/views/home_screen.dart';
 import 'package:foody/Features/login/login_binding.dart';
 import 'package:foody/Features/login/presentation/views/login_screen.dart';
 import 'package:foody/Features/login/presentation/views/welcome_page.dart';
+import 'package:foody/Features/maps/maps_binding.dart';
+import 'package:foody/Features/maps/presentation/manger/location_selector_state.dart';
 import 'package:foody/Features/product/presentation/manger/products_base_state.dart';
 import 'package:foody/Features/product/presentation/views/products_screen.dart';
 import 'package:foody/Features/product/product_binding.dart';
@@ -35,6 +37,11 @@ class ScreensList {
       name: ScreensRoutes.homeScreen,
       page: () => HomeNavigationScreen(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: ScreensRoutes.locationSelectorScreen,
+      page: () => HomeNavigationScreen(),
+      binding: MapsBinding(),
     ),
   ];
 }

@@ -5,4 +5,5 @@ class ScreensRoutes {
   static const categoriesScreen = "/categoriesScreen";
   static const homeScreen = "/homeScreen";
   static const homeNavigationScreen = "/homeNavigationScreen";
+  static const locationSelectorScreen = "/locationSelectorScreen";
 }

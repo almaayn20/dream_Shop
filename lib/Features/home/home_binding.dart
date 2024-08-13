@@ -1,6 +1,7 @@
 import 'package:foody/Features/category/category_binding.dart';
 import 'package:foody/Features/home/presentation/manger/home_navigation_state.dart';
 import 'package:foody/Features/home/presentation/manger/home_state.dart';
+import 'package:foody/Features/maps/maps_binding.dart';
 import 'package:foody/Features/order/order_binding.dart';
 
 import 'package:foody/Features/product/product_binding.dart';
@@ -13,6 +14,9 @@ class HomeBinding extends Bindings {
     CategoryBinding().dependencies();
     ProductBinding().dependencies();
     OrderBinding().dependencies();
+
+    //temp
+    MapsBinding().dependencies();
 
     Get.lazyPut(() => HomeNavigationController(), fenix: true);
 
