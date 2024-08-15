@@ -4,29 +4,20 @@ class ApiConstants {
   static Map<String, String> getHeaders() {
     return {
       'Accept': 'application/json',
-      'xx-token':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWRQZXJzb24iOjEsImlhdCI6MTcyMjYyOTc5MSwiZXhwIjoxNzMyOTk3NzkxfQ.qgzcznIyuN9vLDe1B7R9ejM14P5GjcKcgRQUwa70UW4'
-      //AuthBox.getAuthToken()!,
     };
   }
 
-  static const String endPointUrl = "http://192.168.1.106:7070/api";
-  static const String baseUrl = "http://192.168.1.106:7070";
+  static const String endPointUrl = "https://fakestoreapi.com";
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///=========================================   Auth Urls ===============================================
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-  static String loginEmailId = "/login-email-id";
-  static String renewTokenLogin = "/renew-token-login";
-
+  static String login = "/auth/login";
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///=========================================   Category Urls ===============================================
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-  static String addCategories = "/add-categories";
-  static String getAllCategories = "/get-all-categories";
 
-  static String deleteCategory(String categoryUid) =>
-      '/delete-category/$categoryUid';
+  static String getAllCategories = "/products/categories";
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///=========================================   delivery Urls ===============================================
@@ -59,17 +50,11 @@ class ApiConstants {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   static String addNewProduct = "/add-new-products";
-  static String getProductsTopHome = "/get-products-top-home";
-  static String getImagesProducts(String id) => '/get-images-products/$id';
+  static String getProductsTopHome = "/products";
   static String searchProductsForName(String productName) =>
       '/search-product-for-name/$productName';
   static String searchPorductsForCategory(String categoryId) =>
-      '/search-product-for-category/$categoryId';
-  static String listProductsAdmin = "/list-porducts-admin";
-  static String updateStatusProduct = "/update-status-product";
-  // body: {'idProduct' : idProduct,'status' : status}
-
-  static String deleteProduct(String productId) => '/delete-product/$productId';
+      '/products/category/$categoryId';
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///=========================================   User Urls ===============================================

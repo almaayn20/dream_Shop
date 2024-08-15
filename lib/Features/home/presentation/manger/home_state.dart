@@ -20,18 +20,18 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
-    isLoading.value = true;
     await fetchData();
-    isLoading.value = false;
+
     super.onInit();
   }
 
   Future<void> fetchData() async {
+    isLoading.value = true;
     await categoriesController.fetchCategories();
     await productsController.fetchProductsTopHome();
 
-    // await productsByCategoryController
-    //     .fetchProductsByCategory(categoriesController.currentCategoryId.value);
+    await productsByCategoryController
+        .fetchProductsByCategory(categoriesController.currentCategoryId);
 
     if (categoriesController.errorMessage.isNotEmpty ||
         productsController.errorMessage.isNotEmpty ||
@@ -40,5 +40,6 @@ class HomeController extends GetxController {
       errorMessage.value =
           '${categoriesController.errorMessage.value}  ${productsController.errorMessage.value}  ${productsByCategoryController.errorMessage.value}';
     }
+    isLoading.value = false;
   }
 }

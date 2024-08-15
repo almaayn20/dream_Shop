@@ -17,22 +17,16 @@ class CategoryEntityAdapter extends TypeAdapter<CategoryEntity> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CategoryEntity(
-      categoryId: fields[0] as int,
-      categoryTitle: fields[1] as String,
-      categoryDescription: fields[2] as String,
+      categoryTitle: fields[0] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, CategoryEntity obj) {
     writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.categoryId)
       ..writeByte(1)
-      ..write(obj.categoryTitle)
-      ..writeByte(2)
-      ..write(obj.categoryDescription);
+      ..writeByte(0)
+      ..write(obj.categoryTitle);
   }
 
   @override

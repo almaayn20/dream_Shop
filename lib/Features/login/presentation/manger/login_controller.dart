@@ -9,11 +9,8 @@ class LoginController extends GetxController {
 
   LoginController(this.loginUseCase);
 
-  var token = ''.obs;
   var errorMessage = ''.obs;
   var isLoading = false.obs;
-  var user = ''.obs;
-  var authenticated = false.obs;
 
   Future<void> login(String email, String password) async {
     isLoading.value = true;
@@ -22,9 +19,8 @@ class LoginController extends GetxController {
     result.fold((failure) {
       errorMessage.value = failure.message;
     }, (auth) {
-      user.value = auth.firstName;
-      AuthBox.setUserLoggedIn;
-      authenticated.value = true;
+      AuthBox.setAuthToken(auth);
+      AuthBox.setUserLoggedIn(true);
     });
     isLoading.value = false;
   }

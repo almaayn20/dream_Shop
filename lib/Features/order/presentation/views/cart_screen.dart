@@ -181,7 +181,7 @@ class CartScreen extends GetView<AddNewOrderController> {
               .productId
               .toInt(),
           imageUrl:
-              '${ApiConstants.baseUrl}/${controller.getProductFromController(orderProductEntity.productUid).image}',
+              '${controller.getProductFromController(orderProductEntity.productUid).productImage}',
           name: controller
               .getProductFromController(orderProductEntity.productUid)
               .name,

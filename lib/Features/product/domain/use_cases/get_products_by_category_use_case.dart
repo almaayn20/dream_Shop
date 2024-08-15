@@ -5,14 +5,15 @@ import 'package:foody/core/use_cases/use_case.dart';
 import '../../../../core/errors/failure.dart';
 import '../entities/product_entity.dart';
 
-class GetProductsByCategoryUseCase extends UseCase3<List<ProductEntity>, int> {
+class GetProductsByCategoryUseCase
+    extends UseCase3<List<ProductEntity>, String> {
   final ProductRepo productRepo;
 
   GetProductsByCategoryUseCase(this.productRepo);
 
   @override
   Future<Either<Failure, List<ProductEntity>>> call(
-      {required int param}) async {
+      {required String param}) async {
     return await productRepo.getProductsByCategory(param);
   }
 }

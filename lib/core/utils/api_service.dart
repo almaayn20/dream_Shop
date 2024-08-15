@@ -15,6 +15,11 @@ class ApiService {
     return response.data;
   }
 
+  Future<List<dynamic>> getList({required String endPoint}) async {
+    var response = await _dio.get(endPoint);
+    return response.data;
+  }
+
   Future<Response> post(
       {required String endPoint,
       dynamic data,

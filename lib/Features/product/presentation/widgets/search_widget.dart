@@ -19,7 +19,7 @@ class searchWidget extends GetView<ProductsByTitleController> {
           child: SizedBox(
             height: 52.w,
             child: TextField(
-              onChanged: (text) => controller.fetchProductsByTitle(text),
+              onChanged: (text) => controller.fetchProductsByTitle2(text),
               controller: controller.searchTextController.value,
               decoration: InputDecoration(
                 prefixIcon: Container(

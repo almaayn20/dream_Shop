@@ -5,13 +5,13 @@ import 'package:foody/core/use_cases/use_case.dart';
 import '../../../../core/errors/failure.dart';
 import '../entities/user_entity.dart';
 
-class LoginUseCase extends UseCase2<UserEntity, String, String> {
+class LoginUseCase extends UseCase2<String, String, String> {
   final UserRepo userRepo;
 
   LoginUseCase(this.userRepo);
 
   @override
-  Future<Either<Failure, UserEntity>> call(
+  Future<Either<Failure, String>> call(
       {required String param, required String param2}) async {
     return await userRepo.login(email: param, password: param2);
   }

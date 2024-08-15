@@ -9,14 +9,16 @@ class ProductsByCategoryController extends ProductsBaseController {
 
   ProductsByCategoryController(this.getProductsByCategoryUseCase);
 
-  Future<void> fetchProductsByCategory(int categoryId) async {
+  Future<void> fetchProductsByCategory(String categoryId) async {
     isLoading.value = true;
     var result = await getProductsByCategoryUseCase.call(param: categoryId);
     result.fold((failure) {
       errorMessage.value = failure.message;
     }, (fetchedProducts) {
-      products.value = fetchedProducts;
+      products.assignAll(fetchedProducts);
+      //  products.refresh();
     });
     isLoading.value = false;
+    printInfo(info: products[0].name);
   }
 }

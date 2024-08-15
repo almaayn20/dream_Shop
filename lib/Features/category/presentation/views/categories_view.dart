@@ -13,8 +13,8 @@ class CategoriesList extends GetView<CategoriesController> {
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            final isSelected = controller.currentCategoryId.value ==
-                controller.categories[index].categoryId;
+            final isSelected = controller.currentCategoryId ==
+                controller.categories[index].categoryTitle;
 
             return Row(
               children: [
@@ -25,7 +25,7 @@ class CategoriesList extends GetView<CategoriesController> {
                     : const SizedBox(),
                 GestureDetector(
                   onTap: () => controller.onSelectCategory(
-                      controller.categories[index].categoryId),
+                      controller.categories[index].categoryTitle),
                   child: categoryContainer(
                       isSelected: isSelected,
                       controller: controller,

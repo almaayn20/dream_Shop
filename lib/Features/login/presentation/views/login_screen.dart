@@ -8,6 +8,7 @@ import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/shadow.dart';
 import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/core/helper/validations.dart';
+import 'package:foody/core/hive_boxes/auth_box.dart';
 import 'package:foody/core/widgets/snack_bar.dart';
 import 'package:foody/localization/app_localization.dart';
 import 'package:foody/screen_routes.dart';
@@ -122,9 +123,8 @@ class SignInScreen extends GetView<LoginController> {
                                                   color: AppColors.orange100))),
                                       child: TextFormField(
                                         controller: email,
-                                        validator: Validations.emailValidator,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
+                                        validator: Validations.emptyValidator,
+                                        keyboardType: TextInputType.text,
                                         decoration: InputDecoration(
                                           hintText: 'Your email',
                                         ),
@@ -163,7 +163,7 @@ class SignInScreen extends GetView<LoginController> {
                                 if (_formKey.currentState!.validate()) {
                                   await controller.login(
                                       email.text, password.text);
-                                  controller.authenticated.value == true
+                                  AuthBox.isUserLoggedIn() == true
                                       ? Get.toNamed(ScreensRoutes.homeScreen)
                                       : snackBarCustom(
                                           context,

@@ -34,7 +34,7 @@ class ProductsScreen extends StatelessWidget {
                 ...List.generate(
                   products.length,
                   (index) => ProductContainer(
-                    product: products[index],
+                    productEntity: products[index],
                     index: index,
                     length: products.length,
                   ),

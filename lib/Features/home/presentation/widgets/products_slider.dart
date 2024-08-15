@@ -71,7 +71,7 @@ class ProductsSlider extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return ProductContainer(
-                product: products[index],
+                productEntity: products[index],
                 index: index,
                 length: products.length,
               );

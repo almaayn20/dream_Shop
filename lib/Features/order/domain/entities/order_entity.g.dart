@@ -20,14 +20,14 @@ class OrderEntityAdapter extends TypeAdapter<OrderEntity> {
       addressUid: fields[0] as String,
       paymentType: fields[1] as String,
       totalPrice: fields[2] as double,
-      orderProducts: fields[3] as List<OrderProductEntity>,
+      orderProducts: (fields[3] as List).cast<OrderProductEntity>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, OrderEntity obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.addressUid)
       ..writeByte(1)

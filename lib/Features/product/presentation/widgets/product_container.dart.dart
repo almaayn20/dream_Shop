@@ -8,16 +8,17 @@ import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/shadow.dart';
 import 'package:foody/core/constants/spacing.dart';
+import 'package:foody/core/functions/get_first_n_words.dart';
 import 'package:foody/core/widgets/material.dart';
 import 'package:get/get.dart';
 
 class ProductContainer extends StatelessWidget {
-  final ProductEntity product;
+  final ProductEntity productEntity;
   final int index;
   final int length;
   ProductContainer(
       {Key? key,
-      required this.product,
+      required this.productEntity,
       required this.index,
       required this.length})
       : super(key: key);
@@ -38,7 +39,8 @@ class ProductContainer extends StatelessWidget {
         ),
         width: 154.w,
         child: GestureDetector(
-          onTap: () => Get.to(ProductDetailScreen(productEntity: product)),
+          onTap: () =>
+              Get.to(ProductDetailScreen(productEntity: productEntity)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -56,7 +58,7 @@ class ProductContainer extends StatelessWidget {
           Column(
             children: [
               Image.network(
-                '${ApiConstants.baseUrl}/${product.image}',
+                '${productEntity.productImage}',
                 width: 154.w,
                 height: 160.w,
                 fit: BoxFit.cover,
@@ -89,7 +91,7 @@ class ProductContainer extends StatelessWidget {
                           ),
                           children: [
                             TextSpan(
-                              text: product.productPrice.toString(),
+                              text: productEntity.productPrice.toString(),
                               style: TextStyle(
                                 fontSize: 15.sp,
                                 fontWeight: FontWeight.w900,
@@ -110,7 +112,7 @@ class ProductContainer extends StatelessWidget {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: circularRadius(AppRadius.border32),
-                      color: product.productId % 2 == 0
+                      color: productEntity.productId % 2 == 0
                           ? AppColors.orange100
                           : AppColors.white21,
                     ),
@@ -144,7 +146,7 @@ class ProductContainer extends StatelessWidget {
                   child: Row(
                     children: [
                       Text(
-                        '4.5',
+                        '${productEntity.productRate}',
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
@@ -159,7 +161,7 @@ class ProductContainer extends StatelessWidget {
                       ),
                       SizedBox(width: 2.w),
                       Text(
-                        "(${4.5 > 25 ? "25+" : 4.5})",
+                        "(${productEntity.productRateCount > 25 ? "25+" : productEntity.productRateCount})",
                         style: TextStyle(
                           fontWeight: FontWeight.w300,
                           fontSize: 9.sp,
@@ -190,20 +192,24 @@ class ProductContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              product.name,
+              productEntity.name,
               style: TextStyle(
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.w700,
                 color: AppColors.dark80,
               ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
             Text(
-              product.productDescription,
+              productEntity.productDescription,
               style: TextStyle(
-                fontSize: 12.sp,
+                fontSize: 11.sp,
                 fontWeight: FontWeight.w300,
                 color: AppColors.gray100,
               ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
           ],
         ),

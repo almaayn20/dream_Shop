@@ -73,7 +73,7 @@ class productDetailsAppBar extends StatelessWidget {
                   ),
                 ),
                 child: Image.network(
-                  '${ApiConstants.baseUrl}/${productEntity.image}',
+                  '${productEntity.productImage}',
                   width: 323.w,
                   height: 206.w,
                   fit: BoxFit.scaleDown,

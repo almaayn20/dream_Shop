@@ -12,25 +12,29 @@ class CategoriesController extends GetxController {
   var categories = <CategoryEntity>[].obs;
   var errorMessage = ''.obs;
 
-  var currentCategoryId = 1.obs;
+  var _ctid = ''.obs;
+  //create getter
+  String get currentCategoryId => _ctid.value;
+  set currentCategoryId(String value) {
+    _ctid.value = value;
+  }
 
   final ProductsByCategoryController productsByCategoryController = Get.find();
 
   CategoriesController(this.getAllCategoriesUseCase);
 
   @override
-  void onInit() {
-    fetchCategories();
-    productsByCategoryController
-        .fetchProductsByCategory(currentCategoryId.value);
+  void onInit() async {
+    await fetchCategories();
+    productsByCategoryController.fetchProductsByCategory(currentCategoryId);
     super.onInit();
   }
 
-  void onSelectCategory(int id) async {
-    currentCategoryId.value = id;
-    categories.refresh();
-    productsByCategoryController
-        .fetchProductsByCategory(currentCategoryId.value);
+  void onSelectCategory(String id) async {
+    currentCategoryId = id;
+    //  categories.refresh();
+    productsByCategoryController.fetchProductsByCategory(currentCategoryId);
+    printInfo(info: id.toString());
   }
 
   Future<void> fetchCategories() async {
@@ -40,7 +44,7 @@ class CategoriesController extends GetxController {
       errorMessage.value = failure.message;
     }, (fetchedCategories) {
       categories.value = fetchedCategories;
-      currentCategoryId.value = categories.first.categoryId;
+      currentCategoryId = categories.first.categoryTitle;
     });
     isLoading.value = false;
   }

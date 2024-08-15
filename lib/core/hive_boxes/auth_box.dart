@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
 
-import '../../Features/login/data/models/user_model/user_model.dart';
 import '../../Features/login/domain/entities/user_entity.dart';
 
 class AuthBox {
@@ -34,8 +33,8 @@ class AuthBox {
     authBox.put(AuthBox.currentUserData, user);
   }
 
-  static UserEntity getCurrentUserData(UserModel user) {
-    final authBox = Hive.box(AuthBox.authBox);
-    return authBox.get(AuthBox.currentUserData);
-  }
+  // static UserEntity getCurrentUserData(UserModel user) {
+  //   final authBox = Hive.box(AuthBox.authBox);
+  //   return authBox.get(AuthBox.currentUserData);
+  // }
 }

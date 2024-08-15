@@ -33,7 +33,7 @@ class ProductRepoImpl extends ProductRepo {
 
   @override
   Future<Either<Failure, List<ProductEntity>>> getProductsByCategory(
-      int categoryId) async {
+      String categoryId) async {
     try {
       List<ProductEntity> productList;
 

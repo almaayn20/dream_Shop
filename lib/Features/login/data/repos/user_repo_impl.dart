@@ -15,7 +15,7 @@ class UserRepoImpl extends UserRepo {
   );
 
   @override
-  Future<Either<Failure, UserEntity>> login(
+  Future<Either<Failure, String>> login(
       {required String email, required String password}) async {
     try {
       final user =

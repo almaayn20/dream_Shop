@@ -8,23 +8,25 @@ class ProductEntity {
   @HiveField(1)
   final String name;
   @HiveField(2)
-  final String image;
+  final String productImage;
   @HiveField(3)
   final num productPrice;
   @HiveField(4)
-  final int productStatus;
-  @HiveField(5)
   final String productDescription;
+  @HiveField(5)
+  final String productCategoryId;
   @HiveField(6)
-  final int productCategoryId;
+  final num productRate;
+  @HiveField(7)
+  final num productRateCount;
 
-  ProductEntity({
-    required this.productId,
-    required this.name,
-    required this.image,
-    required this.productPrice,
-    required this.productStatus,
-    required this.productDescription,
-    required this.productCategoryId,
-  });
+  ProductEntity(
+      {required this.productId,
+      required this.name,
+      required this.productImage,
+      required this.productPrice,
+      required this.productDescription,
+      required this.productCategoryId,
+      required this.productRate,
+      required this.productRateCount});
 }

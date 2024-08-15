@@ -6,12 +6,14 @@ import 'package:foody/Features/home/presentation/manger/home_state.dart';
 import 'package:foody/Features/home/presentation/widgets/products_slider.dart';
 import 'package:foody/Features/home/presentation/widgets/search_section.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
+import 'package:foody/Features/product/presentation/manger/products_by_category_state.dart';
 
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/core/widgets/indicator.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class HomeScreen extends GetView<HomeController> {
   HomeScreen({Key? key}) : super(key: key);
@@ -44,10 +46,6 @@ class HomeScreen extends GetView<HomeController> {
   }
 
   Widget _buildContent(BuildContext context) {
-    String categoryTitle = controller
-        .categoriesController
-        .categories[controller.categoriesController.currentCategoryId.value - 1]
-        .categoryTitle;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,16 +57,18 @@ class HomeScreen extends GetView<HomeController> {
                 controller.productsByTitleController.searchTextController.value
                         .text !=
                     ''
-            ? searchStreamBuilder()
+            ? searchBuilder(context)
             : const SizedBox(),
         ProductsSlider(
             context: context,
             title: 'Top Products',
             products: controller.productsController.products),
-        ProductsSlider(
-            context: context,
-            title: categoryTitle,
-            products: controller.productsByCategoryController.products),
+        controller.productsByCategoryController.isLoading.value
+            ? Center(child: CircularProgressIndicator())
+            : ProductsSlider(
+                context: context,
+                title: controller.categoriesController.currentCategoryId,
+                products: controller.productsByCategoryController.products),
       ],
     );
   }
@@ -107,6 +107,14 @@ class HomeScreen extends GetView<HomeController> {
           products: snapshot.data!,
         );
       },
+    );
+  }
+
+  Widget searchBuilder(BuildContext context) {
+    return ProductsSlider(
+      context: context,
+      title: controller.productsByTitleController.text.value,
+      products: controller.productsByTitleController.products,
     );
   }
 

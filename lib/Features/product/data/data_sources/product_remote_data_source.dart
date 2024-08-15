@@ -1,18 +1,17 @@
 import 'dart:async';
 
+import 'package:foody/Features/product/data/models/product/product.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/api_routes.dart';
 import 'package:foody/core/functions/save_products.dart';
 import 'package:foody/core/utils/api_service.dart';
 import 'package:foody/core/utils/de_bouncer.dart';
-
-import '../models/product.list.dart';
-import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 
 abstract class ProductRemoteDataSource {
   Future<List<ProductEntity>> getProductsTopHome();
-  Future<List<ProductEntity>> getProductsByCategory(int categoryId);
+  Future<List<ProductEntity>> getProductsByCategory(String categoryId);
   Future<Stream<List<ProductEntity>>> getProductsByTitle(String searchWord);
 }
 
@@ -31,25 +30,26 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
 
   @override
   Future<List<ProductEntity>> getProductsTopHome() async {
-    var data = await apiService.get(endPoint: ApiConstants.listProductsAdmin);
+    var data =
+        await apiService.getList(endPoint: ApiConstants.getProductsTopHome);
     List<ProductEntity> products = getsProductsList(data);
 
-    saveProductsData(products, kProductsBox);
+    //  saveProductsData(products, kProductsBox);
 
     return products;
   }
 
-  List<ProductEntity> getsProductsList(Map<String, dynamic> data) {
+  List<ProductEntity> getsProductsList(List<dynamic> data) {
     List<ProductEntity> products = [];
-    for (var productMap in data['productsdb']) {
+    for (var productMap in data) {
       products.add(Product.fromJson(productMap));
     }
     return products;
   }
 
   @override
-  Future<List<ProductEntity>> getProductsByCategory(int categoryId) async {
-    var data = await apiService.get(
+  Future<List<ProductEntity>> getProductsByCategory(String categoryId) async {
+    var data = await apiService.getList(
         endPoint:
             ApiConstants.searchPorductsForCategory(categoryId.toString()));
     List<ProductEntity> products = getsProductsList(data);
@@ -61,7 +61,7 @@ class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
       String searchWord) async {
     debouncer.value = '';
     debouncer.onValue = (value) async {
-      var data = await apiService.get(
+      var data = await apiService.getList(
           endPoint: ApiConstants.searchProductsForName(searchWord));
       List<ProductEntity> products = getsProductsList(data);
       streamController.add(products);

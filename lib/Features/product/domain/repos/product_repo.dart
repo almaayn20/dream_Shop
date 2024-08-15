@@ -5,7 +5,7 @@ import 'package:foody/core/errors/failure.dart';
 abstract class ProductRepo {
   Future<Either<Failure, List<ProductEntity>>> getProductsTopHome();
   Future<Either<Failure, List<ProductEntity>>> getProductsByCategory(
-      int categoryId);
+      String categoryId);
   Future<Either<Failure, Stream<List<ProductEntity>>>> getProductsBySearch(
       String searchWord);
 }

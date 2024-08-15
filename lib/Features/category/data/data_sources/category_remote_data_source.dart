@@ -7,6 +7,7 @@ import 'package:foody/core/functions/save_products.dart';
 import 'package:foody/core/utils/api_service.dart';
 
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 
 abstract class CategoryRemoteDataSource {
   Future<List<CategoryEntity>> getAllCategories();
@@ -19,16 +20,15 @@ class CategoryRemoteDataSourceImpl extends CategoryRemoteDataSource {
 
   @override
   Future<List<CategoryEntity>> getAllCategories() async {
-    var data = await apiService.get(endPoint: ApiConstants.getAllCategories);
-    List<CategoryEntity> categories = getsCategoriesList(data);
+    var data =
+        await apiService.getList(endPoint: ApiConstants.getAllCategories);
+    List<CategoryEntity> categories = getCategoriesList(data);
     return categories;
   }
 
-  List<CategoryEntity> getsCategoriesList(Map<String, dynamic> data) {
-    List<CategoryEntity> categories = [];
-    for (var categoryMap in data['categories']) {
-      categories.add(Category.fromJson(categoryMap));
-    }
-    return categories;
+  List<CategoryEntity> getCategoriesList(List<dynamic> data) {
+    return data
+        .map((category) => CategoryEntity(categoryTitle: category))
+        .toList();
   }
 }
