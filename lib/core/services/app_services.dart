@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:foody/Features/login/domain/entities/user_entity.dart';
 import 'package:foody/Features/order/domain/entities/order_entity.dart';
 import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
+import 'package:foody/core/constants/api_keys.dart';
 import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/hive_boxes/auth_box.dart';
 import 'package:foody/core/hive_boxes/settings_box.dart';
@@ -37,6 +39,8 @@ Future<void> initialHive() async {
   // Get the application documents directory
   String appDocPath = await GetApplicationDocumentsDirectory();
   Hive.init(appDocPath);
+
+  Stripe.publishableKey = ApiKeys.publishableKey;
 
   // Register adapters
   registerHiveAdapters();
