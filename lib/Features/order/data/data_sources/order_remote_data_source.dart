@@ -1,12 +1,14 @@
-import 'package:foody/Features/order/data/models/order_model/order_model.dart';
+import 'package:dio/src/response.dart';
+import 'package:foody/Features/order/data/models/add_order_response_model/add_order_response_model.dart';
+import 'package:foody/Features/order/domain/entities/add_order_response_entity.dart';
 import 'package:foody/Features/order/domain/entities/order_entity.dart';
 
 import '../../../../core/api_routes.dart';
-import '../../../../core/hive_boxes/auth_box.dart';
 import '../../../../core/utils/api_service.dart';
 
 abstract class OrderRemoteDataSource {
-  Future<void> addNewOrder({required OrderEntity orderEntity});
+  Future<AddOrderResponseEntity> addNewOrder(
+      {required OrderEntity orderEntity});
 }
 
 class OrderRemoteDataSourceImpl extends OrderRemoteDataSource {
@@ -15,12 +17,19 @@ class OrderRemoteDataSourceImpl extends OrderRemoteDataSource {
   OrderRemoteDataSourceImpl(this.apiService);
 
   @override
-  Future<void> addNewOrder({required OrderEntity orderEntity}) async {
-    await apiService.post(endPoint: ApiConstants.addNewOrders, data: {
-      "uidAddress": orderEntity.addressUid,
-      "typePayment": orderEntity.paymentType,
-      "total": orderEntity.totalPrice,
+  Future<AddOrderResponseEntity> addNewOrder(
+      {required OrderEntity orderEntity}) async {
+    var response =
+        await apiService.post(endPoint: ApiConstants.addNewOrders, data: {
+      "userId": orderEntity.userID,
+      "date": orderEntity.orderDate,
       "products": orderEntity.orderProducts
     });
+
+    return _getOrderResponseEntity(response);
+  }
+
+  AddOrderResponseEntity _getOrderResponseEntity(Response response) {
+    return AddOrderResponseModel.fromJson(response.data);
   }
 }

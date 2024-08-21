@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
@@ -63,19 +64,22 @@ class ProductsSlider extends StatelessWidget {
         SizedBox(
           height: 16.h,
         ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: 252.w,
-          child: ListView.builder(
-            itemCount: products.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return ProductContainer(
-                productEntity: products[index],
-                index: index,
-                length: products.length,
-              );
-            },
+        Padding(
+          padding: EdgeInsets.only(left: AppSpacing.space12),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: 252.w,
+            child: ListView.builder(
+              itemCount: products.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return ProductContainer(
+                  productEntity: products[index],
+                  index: index,
+                  length: products.length,
+                );
+              },
+            ),
           ),
         )
       ],

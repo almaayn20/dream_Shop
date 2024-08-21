@@ -29,8 +29,8 @@ class ProductContainer extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         margin: EdgeInsets.only(
           bottom: AppSpacing.space28,
-          left: index == 0 ? AppSpacing.space24 : 0,
-          right: index == length - 1 ? AppSpacing.space24 : 16.w,
+          left: 0,
+          right: 16.w,
         ),
         decoration: BoxDecoration(
           color: AppColors.white100,
@@ -60,8 +60,8 @@ class ProductContainer extends StatelessWidget {
               Image.network(
                 '${productEntity.productImage}',
                 width: 154.w,
-                height: 160.w,
-                fit: BoxFit.cover,
+                height: 160.h,
+                fit: BoxFit.scaleDown,
               ),
               SizedBox(height: 14.w),
             ],

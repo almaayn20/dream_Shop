@@ -13,12 +13,14 @@ class OrderProductCard extends GetView<AddNewOrderController> {
   final double price;
   final int id;
   final int quantity;
+  final int index;
   const OrderProductCard(
       {required this.id,
       required this.imageUrl,
       required this.name,
       required this.price,
-      required this.quantity});
+      required this.quantity,
+      required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class OrderProductCard extends GetView<AddNewOrderController> {
             borderRadius: BorderRadius.circular(AppRadius.border8),
             child: Image.network(
               imageUrl,
-              width: 100.w,
+              width: 80.w,
               height: 100.h,
               fit: BoxFit.scaleDown,
             ),
@@ -45,6 +47,8 @@ class OrderProductCard extends GetView<AddNewOrderController> {
               children: [
                 Text(
                   name,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 16.0.sp,
                     fontWeight: FontWeight.w600,
@@ -68,7 +72,7 @@ class OrderProductCard extends GetView<AddNewOrderController> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               IconButton(
-                onPressed: () => controller.deleteOrderProduct(id - 1),
+                onPressed: () => controller.deleteOrderProduct(index),
                 icon: Icon(Icons.close),
                 color: AppColors.orange100,
                 iconSize: 20.0.sp,
@@ -76,7 +80,7 @@ class OrderProductCard extends GetView<AddNewOrderController> {
               Row(
                 children: [
                   GestureDetector(
-                    onTap: () => controller.doDecrease(id - 1),
+                    onTap: () => controller.doDecrease(index),
                     child: Container(
                       width: 29.w,
                       height: 29.w,
@@ -106,7 +110,7 @@ class OrderProductCard extends GetView<AddNewOrderController> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => controller.doIncrease(id - 1),
+                    onTap: () => controller.doIncrease(index),
                     child: Container(
                       width: 29.w,
                       height: 29.w,

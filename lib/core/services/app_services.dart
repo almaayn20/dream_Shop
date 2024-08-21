@@ -52,8 +52,6 @@ Future<void> initialHive() async {
 void registerHiveAdapters() {
   Hive.registerAdapter(UserEntityAdapter());
   Hive.registerAdapter(ProductEntityAdapter());
-  Hive.registerAdapter(OrderEntityAdapter());
-  Hive.registerAdapter(OrderProductEntityAdapter());
 }
 
 Future<void> openHiveBoxes() async {

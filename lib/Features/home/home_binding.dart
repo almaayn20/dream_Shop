@@ -16,7 +16,7 @@ class HomeBinding extends Bindings {
     ProductBinding().dependencies();
     OrderBinding().dependencies();
 
-    //temp
+    //temp//////////////////
     MapsBinding().dependencies();
     PaymentBinding().dependencies();
 

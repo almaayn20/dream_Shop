@@ -12,8 +12,8 @@ import 'package:foody/core/widgets/back.dart';
 import 'package:foody/core/widgets/material.dart';
 import 'package:get/get.dart';
 
-class productDetailsAppBar extends StatelessWidget {
-  const productDetailsAppBar({
+class ProductDetailsAppBar extends StatelessWidget {
+  const ProductDetailsAppBar({
     super.key,
     required this.productEntity,
     required this.context,
@@ -30,25 +30,10 @@ class productDetailsAppBar extends StatelessWidget {
       snap: true,
       floating: true,
       leading: Container(),
-      expandedHeight: 228.w + MediaQuery.of(context).viewPadding.top,
+      expandedHeight: 255.w + MediaQuery.of(context).viewPadding.top,
       backgroundColor: AppColors.white100,
       flexibleSpace: FlexibleSpaceBar(
         collapseMode: CollapseMode.parallax,
-        expandedTitleScale: 1.4,
-        titlePadding: EdgeInsets.symmetric(
-          horizontal: AppSpacing.space24,
-          vertical: AppSpacing.space12,
-        ),
-        centerTitle: false,
-        title: Text(
-          productEntity.name,
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            color: AppColors.dark80,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
         background: Container(
           padding: EdgeInsets.only(
             top: MediaQuery.of(context).viewPadding.top,
@@ -57,27 +42,36 @@ class productDetailsAppBar extends StatelessWidget {
           child: Stack(
             alignment: Alignment.topCenter,
             children: [
-              // CarouselSlider.builder(
-              //   itemCount: imagesProducts.length,
-              //   options: CarouselOptions(viewportFraction: 1.0, autoPlay: true),
-              //   itemBuilder: (context, i, realIndex) => Container(
-              //     width: size.width,
-              //     child: Image.network(
-              //         Environment.endpointBase + imagesProducts[i].picture),
-              //   ),
-              // ),
-              ClipRRect(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(
-                    AppRadius.border16,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(AppRadius.border16),
+                    ),
+                    child: Image.network(
+                      '${productEntity.productImage}',
+                      width: 323.w,
+                      height: 190.h,
+                      fit: BoxFit.scaleDown,
+                    ),
                   ),
-                ),
-                child: Image.network(
-                  '${productEntity.productImage}',
-                  width: 323.w,
-                  height: 206.w,
-                  fit: BoxFit.scaleDown,
-                ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSpacing.space24,
+                      vertical: AppSpacing.space8,
+                    ),
+                    child: Text(
+                      productEntity.name,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: AppColors.dark80,
+                        fontSize: 19.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Positioned(
                 top: 8.w,

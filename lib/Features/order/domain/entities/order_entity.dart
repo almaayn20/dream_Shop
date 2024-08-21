@@ -1,21 +1,16 @@
 import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
-import 'package:hive/hive.dart';
-part 'order_entity.g.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-@HiveType(typeId: 5)
 class OrderEntity {
-  @HiveField(0)
-  final String addressUid;
-  @HiveField(1)
-  final String paymentType;
-  @HiveField(2)
-  final double totalPrice;
-  @HiveField(3)
+  final int userID;
+  final String orderDate;
   final List<OrderProductEntity> orderProducts;
-
+  final LatLng? geolocation;
+  final String? paymentMethod;
   OrderEntity(
-      {required this.addressUid,
-      required this.paymentType,
-      required this.totalPrice,
-      required this.orderProducts});
+      {required this.userID,
+      required this.orderDate,
+      required this.orderProducts,
+      this.geolocation,
+      this.paymentMethod});
 }

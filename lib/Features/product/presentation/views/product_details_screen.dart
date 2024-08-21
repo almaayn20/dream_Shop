@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:foody/Features/order/data/models/order_model/order_product.dart';
 import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 import 'package:foody/Features/order/presentation/manger/add_new_order_state.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/Features/product/presentation/manger/product_details_state.dart';
 import 'package:foody/Features/product/presentation/widgets/product_details_app_bar.dart';
 import 'package:foody/Features/product/presentation/widgets/product_quantity.dart';
-import 'package:foody/core/api_routes.dart';
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/shadow.dart';
@@ -29,7 +27,7 @@ class ProductDetailScreen extends GetView<ProductDetailsController> {
       bottomNavigationBar: addToCartButton(context),
       body: CustomScrollView(
         slivers: <Widget>[
-          productDetailsAppBar(
+          ProductDetailsAppBar(
             productEntity: productEntity,
             context: context,
           ),
@@ -48,9 +46,10 @@ class ProductDetailScreen extends GetView<ProductDetailsController> {
       child: GestureDetector(
         onTap: () {
           orderController.addOrderProduct(OrderProductEntity(
-              productUid: productEntity.productId.toInt(),
-              productQuantity: controller.quantity,
-              productPrice: productEntity.productPrice.toDouble()));
+            productID: productEntity.productId.toInt(),
+            productQuantity: controller.quantity,
+            productPrice: productEntity.productPrice.toDouble(),
+          ));
           snackBarCustom(context, 'product added to cart', '', () {});
         },
         child: Container(
@@ -142,7 +141,7 @@ class ProductDetailScreen extends GetView<ProductDetailsController> {
         ),
         SizedBox(width: 8.w),
         Text(
-          '4.5',
+          '${productEntity.productRate}',
           style: TextStyle(
             fontSize: 14.sp,
             fontWeight: FontWeight.w700,
@@ -151,7 +150,7 @@ class ProductDetailScreen extends GetView<ProductDetailsController> {
         ),
         SizedBox(width: 4.w),
         Text(
-          "(${4.5 > 25 ? "25+" : 4.5})",
+          "(${productEntity.productRateCount > 25 ? "25+" : productEntity.productRateCount})",
           style: TextStyle(
             fontWeight: FontWeight.w300,
             fontSize: 14.sp,

@@ -1,10 +1,9 @@
-class OrderProductEntity {
+class AddOrderProductResponseEntity {
   final int productID;
   final int productQuantity;
-  final double? productPrice;
-  OrderProductEntity({
+
+  AddOrderProductResponseEntity({
     required this.productID,
     required this.productQuantity,
-    this.productPrice,
   });
 }

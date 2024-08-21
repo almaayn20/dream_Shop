@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 import 'package:foody/Features/order/presentation/manger/add_new_order_state.dart';
 import 'package:foody/Features/order/presentation/widgets/order_product_card.dart';
-import 'package:foody/Features/order/presentation/widgets/summary_item.dart';
-import 'package:foody/core/api_routes.dart';
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
@@ -50,6 +48,7 @@ class CartScreen extends GetView<AddNewOrderController> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(child: orderProductsList(context)),
+          SizedBox(height: 10.0.h),
           // Promo Code Input
           Container(
             height: 60.0.h,
@@ -105,7 +104,7 @@ class CartScreen extends GetView<AddNewOrderController> {
               ],
             ),
           ),
-          SizedBox(height: 30.0.h),
+          SizedBox(height: 20.0.h),
           // Subtotal, Tax, Delivery, Total
           buildSummaryRow('Subtotal', '\$${controller.getTotalPrice()} USD'),
           buildSummaryRow('Delivery', '\$1.00 USD'),
@@ -113,7 +112,8 @@ class CartScreen extends GetView<AddNewOrderController> {
           buildSummaryRow('Total (${controller.orderProducts.length})',
               '\$${controller.getTotalPrice() + 1.00} USD',
               isTotal: true),
-          Spacer(),
+          //   Spacer(),
+          SizedBox(height: 20.0.h),
           // Checkout Button
           Container(
             height: 60.0.h,
@@ -177,19 +177,20 @@ class CartScreen extends GetView<AddNewOrderController> {
 
         return OrderProductCard(
           id: controller
-              .getProductFromController(orderProductEntity.productUid)
+              .getProductFromController(orderProductEntity.productID)
               .productId
               .toInt(),
           imageUrl:
-              '${controller.getProductFromController(orderProductEntity.productUid).productImage}',
+              '${controller.getProductFromController(orderProductEntity.productID).productImage}',
           name: controller
-              .getProductFromController(orderProductEntity.productUid)
+              .getProductFromController(orderProductEntity.productID)
               .name,
           price: controller
-              .getProductFromController(orderProductEntity.productUid)
+              .getProductFromController(orderProductEntity.productID)
               .productPrice
               .toDouble(),
           quantity: orderProductEntity.productQuantity,
+          index: index,
         );
       },
     );

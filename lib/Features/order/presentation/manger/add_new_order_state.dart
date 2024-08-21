@@ -1,5 +1,3 @@
-import 'package:foody/Features/login/login_binding.dart';
-import 'package:foody/Features/order/data/models/order_model/order_product.dart';
 import 'package:foody/Features/order/domain/entities/order_entity.dart';
 import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 import 'package:foody/Features/order/domain/use_cases/add_new_order_use_case.dart';
@@ -7,10 +5,7 @@ import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/Features/product/presentation/manger/products_by_category_state.dart';
 import 'package:foody/Features/product/presentation/manger/products_by_title_state.dart';
 import 'package:foody/Features/product/presentation/manger/products_top_home_state.dart';
-import 'package:foody/core/helper/app_print_class.dart';
 import 'package:get/get.dart';
-
-import '../../../../core/hive_boxes/auth_box.dart';
 
 class AddNewOrderController extends GetxController {
   final AddNewOrderUseCase addNewOrderUseCase;
@@ -24,29 +19,29 @@ class AddNewOrderController extends GetxController {
   double getTotalPrice() {
     double totalPrice = 0;
     for (var element in orderProducts) {
-      totalPrice += element.productPrice * element.productQuantity;
+      totalPrice += element.productPrice! * element.productQuantity;
     }
     return totalPrice;
   }
 
   void doIncrease(int productId) {
-    AppPrint().printInfo(info: productId.toString());
     OrderProductEntity old = orderProducts[productId];
     OrderProductEntity productAfterUpdateQuantity = OrderProductEntity(
-        productUid: old.productUid,
-        productQuantity: old.productQuantity + 1,
-        productPrice: old.productPrice);
+      productID: old.productID,
+      productQuantity: old.productQuantity + 1,
+      productPrice: old.productPrice,
+    );
     orderProducts[productId] = productAfterUpdateQuantity;
   }
 
   void doDecrease(int productId) {
-    AppPrint().printInfo(info: productId.toString());
     if (orderProducts[productId].productQuantity - 1 > 0) {
       OrderProductEntity old = orderProducts[productId];
       OrderProductEntity productAfterUpdateQuantity = OrderProductEntity(
-          productUid: old.productUid,
-          productQuantity: old.productQuantity - 1,
-          productPrice: old.productPrice);
+        productID: old.productID,
+        productQuantity: old.productQuantity - 1,
+        productPrice: old.productPrice,
+      );
       orderProducts[productId] = productAfterUpdateQuantity;
     }
   }
@@ -78,12 +73,12 @@ class AddNewOrderController extends GetxController {
 
   void addOrderProduct(OrderProductEntity orderProductEntity) {
     int isExist = orderProducts.indexWhere(
-        (product) => product.productUid == orderProductEntity.productUid);
+        (product) => product.productID == orderProductEntity.productID);
 
     if (isExist != -1) {
       // Create a new instance with updated quantity
       final updatedProduct = OrderProductEntity(
-        productUid: orderProducts[isExist].productUid,
+        productID: orderProducts[isExist].productID,
         productQuantity: orderProducts[isExist].productQuantity +
             orderProductEntity.productQuantity,
         productPrice: orderProductEntity.productPrice,

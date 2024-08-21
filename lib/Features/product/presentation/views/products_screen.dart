@@ -26,9 +26,9 @@ class ProductsScreen extends StatelessWidget {
             padding: EdgeInsets.all(AppSpacing.space20),
             child: GridView(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 1 / 1.73,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
+                  childAspectRatio: 1 / 1.78,
+                  mainAxisSpacing: 2,
+                  crossAxisSpacing: 5,
                   crossAxisCount: 2),
               children: [
                 ...List.generate(
