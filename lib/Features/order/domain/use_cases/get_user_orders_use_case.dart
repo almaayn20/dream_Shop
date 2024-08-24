@@ -6,14 +6,14 @@ import 'package:foody/core/use_cases/use_case.dart';
 
 import '../../../../core/errors/failure.dart';
 
-class AddNewOrderUseCase extends UseCase3<OrderResponseEntity, OrderEntity> {
+class GetUserOrdersUseCase extends UseCase3<List<OrderResponseEntity>, int> {
   final OrderRepo orderRepo;
 
-  AddNewOrderUseCase(this.orderRepo);
+  GetUserOrdersUseCase(this.orderRepo);
 
   @override
-  Future<Either<Failure, OrderResponseEntity>> call(
-      {required OrderEntity param}) {
-    return orderRepo.addNewOrder(param);
+  Future<Either<Failure, List<OrderResponseEntity>>> call(
+      {required int param}) {
+    return orderRepo.getUserOrders(param);
   }
 }

@@ -1,12 +1,12 @@
-import 'package:foody/Features/order/domain/entities/add_order_product_response_entity.dart';
+import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 
-class AddOrderResponseEntity {
+class OrderResponseEntity {
   final int orderId;
   final int userID;
   final String orderDate;
-  final List<AddOrderProductResponseEntity> orderProducts;
+  final List<OrderProductEntity> orderProducts;
 
-  AddOrderResponseEntity(
+  OrderResponseEntity(
       {required this.orderId,
       required this.userID,
       required this.orderDate,

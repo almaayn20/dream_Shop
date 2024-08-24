@@ -19,6 +19,5 @@ class ProductsByCategoryController extends ProductsBaseController {
       //  products.refresh();
     });
     isLoading.value = false;
-    printInfo(info: products[0].name);
   }
 }

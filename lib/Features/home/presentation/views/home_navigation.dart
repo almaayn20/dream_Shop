@@ -20,7 +20,6 @@ class HomeNavigationScreen extends GetView<HomeNavigationController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
-        key: controller.key,
         bottomNavigationBar: BottomTabBar(
           pages: controller.pages,
           onItemTapped: controller.onItemTapped,

@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 import 'package:foody/Features/order/presentation/manger/add_new_order_state.dart';
+import 'package:foody/Features/order/presentation/views/checkout.dart';
+import 'package:foody/Features/order/presentation/widgets/build_summary_row.dart';
 import 'package:foody/Features/order/presentation/widgets/order_product_card.dart';
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/core/widgets/indicator.dart';
+import 'package:foody/core/widgets/snack_bar.dart';
 import 'package:get/get.dart';
 
 class CartScreen extends GetView<AddNewOrderController> {
-  CartScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -80,7 +81,10 @@ class CartScreen extends GetView<AddNewOrderController> {
                   child: Container(
                     height: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        snackBarCustom(
+                            context, 'Invalid Promo Code', '', () {});
+                      },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius:
@@ -118,7 +122,9 @@ class CartScreen extends GetView<AddNewOrderController> {
           Container(
             height: 60.0.h,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => CheckoutScreen());
+              },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppRadius.border32),
@@ -135,33 +141,6 @@ class CartScreen extends GetView<AddNewOrderController> {
                   color: AppColors.white100,
                 ),
               ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildSummaryRow(String label, String amount, {bool isTotal = false}) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: AppSpacing.space5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 16.0.sp,
-              fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
-              color: isTotal ? AppColors.dark100 : AppColors.gray150,
-            ),
-          ),
-          Text(
-            amount,
-            style: TextStyle(
-              fontSize: 16.0.sp,
-              fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
-              color: isTotal ? AppColors.dark100 : AppColors.gray150,
             ),
           ),
         ],

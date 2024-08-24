@@ -18,7 +18,6 @@ class HomeBinding extends Bindings {
 
     //temp//////////////////
     MapsBinding().dependencies();
-    PaymentBinding().dependencies();
 
     Get.lazyPut(() => HomeNavigationController(), fenix: true);
 

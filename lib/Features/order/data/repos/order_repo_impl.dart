@@ -13,11 +13,39 @@ class OrderRepoImpl extends OrderRepo {
   OrderRepoImpl(this.orderRemoteDataSource);
 
   @override
-  Future<Either<Failure, AddOrderResponseEntity>> addNewOrder(
+  Future<Either<Failure, OrderResponseEntity>> addNewOrder(
       OrderEntity orderEntity) async {
     try {
       var result =
           await orderRemoteDataSource.addNewOrder(orderEntity: orderEntity);
+
+      return Right(result);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDiorError(e));
+      }
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<OrderResponseEntity>>> getUserOrders(
+      int userId) async {
+    try {
+      var result = await orderRemoteDataSource.getUserOrders(userId: userId);
+      return Right(result);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDiorError(e));
+      }
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  Future<Either<Failure, Type>> repoImplFuncion<Type>(
+      Future<Type> function) async {
+    try {
+      var result = await function;
 
       return Right(result);
     } catch (e) {

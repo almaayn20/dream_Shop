@@ -1,6 +1,8 @@
 import 'package:foody/Features/order/domain/entities/order_entity.dart';
 import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 import 'package:foody/Features/order/domain/use_cases/add_new_order_use_case.dart';
+import 'package:foody/Features/order/domain/use_cases/get_user_orders_use_case.dart';
+import 'package:foody/Features/order/presentation/manger/get_user_orders_state.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/Features/product/presentation/manger/products_by_category_state.dart';
 import 'package:foody/Features/product/presentation/manger/products_by_title_state.dart';
@@ -15,9 +17,11 @@ class AddNewOrderController extends GetxController {
   var errorMessage = ''.obs;
   var isLoading = false.obs;
   var orderProducts = <OrderProductEntity>[].obs;
+  GetUserOrdersController getUserOrdersUseCaseController = Get.find();
 
   double getTotalPrice() {
     double totalPrice = 0;
+
     for (var element in orderProducts) {
       totalPrice += element.productPrice! * element.productQuantity;
     }
@@ -48,6 +52,18 @@ class AddNewOrderController extends GetxController {
 
   void deleteOrderProduct(int productId) {
     orderProducts.removeAt(productId);
+  }
+
+  void addProductPricesToList() {
+    for (int i = 0; i < orderProducts.length; i++) {
+      orderProducts[i] = OrderProductEntity(
+        productID: orderProducts[i].productID,
+        productQuantity: orderProducts[i].productQuantity,
+        productPrice: getProductFromController(orderProducts[i].productID)
+            .productPrice
+            .toDouble(),
+      );
+    }
   }
 
   ProductEntity getProductFromController(int id) {
@@ -97,7 +113,9 @@ class AddNewOrderController extends GetxController {
 
     result.fold((failure) {
       errorMessage.value = failure.message;
-    }, (auth) {});
+    }, (s) {
+      getUserOrdersUseCaseController.getUserOrders(1);
+    });
     isLoading.value = false;
   }
 }

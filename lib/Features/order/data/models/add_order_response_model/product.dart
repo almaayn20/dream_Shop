@@ -1,6 +1,6 @@
-import 'package:foody/Features/order/domain/entities/add_order_product_response_entity.dart';
+import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 
-class Product extends AddOrderProductResponseEntity {
+class Product extends OrderProductEntity {
   int? productId;
   int? quantity;
 
