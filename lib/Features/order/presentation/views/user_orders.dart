@@ -4,7 +4,9 @@ import 'package:foody/Features/home/presentation/manger/home_navigation_state.da
 import 'package:foody/Features/order/domain/entities/add_order_response_entity.dart';
 import 'package:foody/Features/order/presentation/manger/add_new_order_state.dart';
 import 'package:foody/Features/order/presentation/manger/get_user_orders_state.dart';
+import 'package:foody/Features/order/presentation/manger/track_order_state.dart';
 import 'package:foody/core/constants/colors.dart';
+import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/screen_routes.dart';
@@ -14,18 +16,16 @@ import 'package:intl/intl.dart';
 class UserOrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'My Orders',
-          ),
-          centerTitle: true,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'My Orders',
         ),
-        backgroundColor: Colors.white,
-        body: Center(
-          child: LastedOrders(),
-        ),
+        centerTitle: true,
+      ),
+      backgroundColor: Colors.white,
+      body: Center(
+        child: LastedOrders(),
       ),
     );
   }
@@ -119,7 +119,9 @@ class OrderCard extends StatelessWidget {
                               color: Colors.green, size: 16),
                           SizedBox(width: 4.w),
                           Text(
-                            "Order Delivered",
+                            (order.orderId == 1 || order.orderId == 2)
+                                ? OrderStatusEnum.delivered.label
+                                : order.orderStatus!.label,
                             style:
                                 TextStyle(color: Colors.green, fontSize: 14.sp),
                           ),
@@ -136,7 +138,9 @@ class OrderCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(ScreensRoutes.trackOrderScreen, arguments: order);
+                },
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(AppColors.white100),
@@ -157,7 +161,7 @@ class OrderCard extends StatelessWidget {
                   }
                   addNewOrderController.addProductPricesToList();
                   homeNavigationController.onItemTapped(1);
-                  Get.offNamed(ScreensRoutes.cartScreen);
+                  Get.toNamed(ScreensRoutes.cartScreen);
                 },
                 child: Text('Re-Order'),
               ),

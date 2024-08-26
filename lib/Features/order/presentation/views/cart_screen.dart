@@ -170,6 +170,7 @@ class CartScreen extends GetView<AddNewOrderController> {
               .toDouble(),
           quantity: orderProductEntity.productQuantity,
           index: index,
+          isCartProduct: false,
         );
       },
     );

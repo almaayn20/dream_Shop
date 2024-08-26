@@ -8,4 +8,5 @@ class ScreensRoutes {
   static const locationSelectorScreen = "/locationSelectorScreen";
   static const cartScreen = "/cartScreen";
   static const userOrdersScreen = "/userOrdersScreen";
+  static const trackOrderScreen = "/trackOrderScreen";
 }

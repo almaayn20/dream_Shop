@@ -4,6 +4,7 @@ import 'package:foody/Features/order/domain/use_cases/add_new_order_use_case.dar
 import 'package:foody/Features/order/domain/use_cases/get_user_orders_use_case.dart';
 import 'package:foody/Features/order/presentation/manger/add_new_order_state.dart';
 import 'package:foody/Features/order/presentation/manger/get_user_orders_state.dart';
+import 'package:foody/Features/order/presentation/manger/track_order_state.dart';
 import 'package:foody/Features/payment/payment_binding.dart';
 import 'package:get/get.dart';
 
@@ -33,6 +34,7 @@ class OrderBinding extends Bindings {
         fenix: true);
     Get.lazyPut(() => GetUserOrdersController(Get.find<GetUserOrdersUseCase>()),
         fenix: true);
+    Get.lazyPut(() => TrackOrderController(), fenix: true);
 
 //=============================== End Injection The Controllers ======================================
 

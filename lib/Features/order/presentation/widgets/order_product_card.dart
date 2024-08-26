@@ -14,13 +14,15 @@ class OrderProductCard extends GetView<AddNewOrderController> {
   final int id;
   final int quantity;
   final int index;
+  final bool isCartProduct;
   const OrderProductCard(
       {required this.id,
       required this.imageUrl,
       required this.name,
       required this.price,
       required this.quantity,
-      required this.index});
+      required this.index,
+      required this.isCartProduct});
 
   @override
   Widget build(BuildContext context) {
@@ -64,75 +66,89 @@ class OrderProductCard extends GetView<AddNewOrderController> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                !isCartProduct
+                    ? Container(
+                        child: Text(
+                          'Quantity : ${quantity.toString()}',
+                          //       controller.orderProducts[id].productQuantity.toString(),
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      )
+                    : Container()
               ],
             ),
           ),
           // Quantity Controls
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              IconButton(
-                onPressed: () => controller.deleteOrderProduct(index),
-                icon: Icon(Icons.close),
-                color: AppColors.orange100,
-                iconSize: 20.0.sp,
-              ),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () => controller.doDecrease(index),
-                    child: Container(
-                      width: 29.w,
-                      height: 29.w,
-                      decoration: BoxDecoration(
-                        borderRadius: circularRadius(AppRadius.border32),
-                        border: Border.all(
-                          color: AppColors.orange100,
+          !isCartProduct
+              ? Container()
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      onPressed: () => controller.deleteOrderProduct(index),
+                      icon: Icon(Icons.close),
+                      color: AppColors.orange100,
+                      iconSize: 20.0.sp,
+                    ),
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () => controller.doDecrease(index),
+                          child: Container(
+                            width: 29.w,
+                            height: 29.w,
+                            decoration: BoxDecoration(
+                              borderRadius: circularRadius(AppRadius.border32),
+                              border: Border.all(
+                                color: AppColors.orange100,
+                              ),
+                            ),
+                            child: Icon(
+                              Icons.remove,
+                              color: AppColors.orange100,
+                              size: 16.w,
+                            ),
+                          ),
                         ),
-                      ),
-                      child: Icon(
-                        Icons.remove,
-                        color: AppColors.orange100,
-                        size: 16.w,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: AppSpacing.space8),
-                    child: Text(
-                      quantity.toString(),
-                      //       controller.orderProducts[id].productQuantity.toString(),
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => controller.doIncrease(index),
-                    child: Container(
-                      width: 29.w,
-                      height: 29.w,
-                      decoration: BoxDecoration(
-                        borderRadius: circularRadius(AppRadius.border32),
-                        border: Border.all(
-                          color: AppColors.orange100,
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: AppSpacing.space8),
+                          child: Text(
+                            quantity.toString(),
+                            //       controller.orderProducts[id].productQuantity.toString(),
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
                         ),
-                        color: AppColors.orange100,
-                      ),
-                      child: Icon(
-                        Icons.add,
-                        color: AppColors.white100,
-                        size: 16.w,
-                      ),
+                        GestureDetector(
+                          onTap: () => controller.doIncrease(index),
+                          child: Container(
+                            width: 29.w,
+                            height: 29.w,
+                            decoration: BoxDecoration(
+                              borderRadius: circularRadius(AppRadius.border32),
+                              border: Border.all(
+                                color: AppColors.orange100,
+                              ),
+                              color: AppColors.orange100,
+                            ),
+                            child: Icon(
+                              Icons.add,
+                              color: AppColors.white100,
+                              size: 16.w,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              // Remove Button
-            ],
-          ),
+                    // Remove Button
+                  ],
+                ),
         ],
       ),
     );

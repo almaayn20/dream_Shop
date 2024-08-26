@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foody/Features/home/presentation/manger/home_navigation_state.dart';
 import 'package:foody/Features/order/domain/entities/order_entity.dart';
 import 'package:foody/Features/order/presentation/manger/add_new_order_state.dart';
 import 'package:foody/Features/order/presentation/widgets/build_summary_row.dart';
@@ -41,6 +42,8 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
   }
 
   Widget _buildContent(BuildContext context) {
+    final HomeNavigationController homeNavigationController = Get.find();
+
     return Padding(
       padding: EdgeInsets.all(AppSpacing.space16),
       child: Column(
@@ -121,7 +124,16 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
                   } else {
                     snackBarCustom(
                         context, 'Order Completed Successfuly', '', () {});
-                    Get.offNamed(ScreensRoutes.homeScreen);
+                    homeNavigationController.onItemTapped(0);
+                    int count = 0;
+
+                    Get.offNamedUntil(
+                      ScreensRoutes
+                          .homeScreen, // The route you want to navigate to
+                      (route) =>
+                          route.isFirst ||
+                          Get.previousRoute == Get.currentRoute,
+                    );
                   }
                 }
               },

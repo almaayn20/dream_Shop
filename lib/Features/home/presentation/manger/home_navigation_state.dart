@@ -20,13 +20,7 @@ class HomeNavigationController extends GetxController {
       page: LocationSelectorScreen(),
     ),
     HomeNavigationModel(
-        icon: "assets/icons/setting.svg",
-        page: Center(
-          child: ElevatedButton(
-            child: Text('My orders'),
-            onPressed: () => Get.toNamed(ScreensRoutes.userOrdersScreen),
-          ),
-        )),
+        icon: "assets/icons/setting.svg", page: UserOrdersScreen()),
   ].obs;
 
   final RxInt _selectedIndex = 0.obs;
