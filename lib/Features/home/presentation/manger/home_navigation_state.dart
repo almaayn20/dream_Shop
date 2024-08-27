@@ -16,8 +16,8 @@ class HomeNavigationController extends GetxController {
     ),
     HomeNavigationModel(icon: "assets/icons/cart_tab.svg", page: CartScreen()),
     HomeNavigationModel(
-      icon: "assets/icons/favourite_tab.svg",
-      page: LocationSelectorScreen(),
+      icon: "assets/icons/my_order.svg",
+      page: UserOrdersScreen(),
     ),
     HomeNavigationModel(
         icon: "assets/icons/setting.svg", page: UserOrdersScreen()),

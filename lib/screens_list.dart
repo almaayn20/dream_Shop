@@ -6,6 +6,7 @@ import 'package:foody/Features/home/presentation/views/home_navigation.dart';
 import 'package:foody/Features/home/presentation/views/home_screen.dart';
 import 'package:foody/Features/login/login_binding.dart';
 import 'package:foody/Features/login/presentation/views/login_screen.dart';
+import 'package:foody/Features/login/presentation/views/login_screen1.dart';
 import 'package:foody/Features/login/presentation/views/welcome_page.dart';
 import 'package:foody/Features/maps/maps_binding.dart';
 import 'package:foody/Features/maps/presentation/manger/location_selector_state.dart';

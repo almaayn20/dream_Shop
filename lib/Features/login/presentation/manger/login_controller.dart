@@ -11,6 +11,7 @@ class LoginController extends GetxController {
 
   var errorMessage = ''.obs;
   var isLoading = false.obs;
+  var passwordVisible = true.obs;
 
   Future<void> login(String email, String password) async {
     isLoading.value = true;
