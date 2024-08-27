@@ -6,6 +6,7 @@ import 'package:foody/Features/order/order_binding.dart';
 import 'package:foody/Features/payment/payment_binding.dart';
 
 import 'package:foody/Features/product/product_binding.dart';
+import 'package:foody/Features/settings/settings_binding.dart';
 import 'package:get/get.dart';
 
 class HomeBinding extends Bindings {
@@ -15,9 +16,7 @@ class HomeBinding extends Bindings {
     CategoryBinding().dependencies();
     ProductBinding().dependencies();
     OrderBinding().dependencies();
-
-    //temp//////////////////
-    MapsBinding().dependencies();
+    SettingsBinding().dependencies();
 
     Get.lazyPut(() => HomeNavigationController(), fenix: true);
 

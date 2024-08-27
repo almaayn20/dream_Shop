@@ -160,7 +160,7 @@ class SignUpSection extends StatelessWidget {
               TextSpan(
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      Get.toNamed(ScreensRoutes.signInScreen);
+                      Get.toNamed(ScreensRoutes.loginScreen);
                     },
                   text: ("sign in"),
                   style: const TextStyle(

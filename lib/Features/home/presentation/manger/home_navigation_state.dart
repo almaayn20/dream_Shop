@@ -4,6 +4,7 @@ import 'package:foody/Features/home/data/models/home_navigation_model.dart';
 import 'package:foody/Features/maps/presentation/views/location_selector_screen.dart';
 import 'package:foody/Features/order/presentation/views/cart_screen.dart';
 import 'package:foody/Features/order/presentation/views/user_orders.dart';
+import 'package:foody/Features/settings/presentation/views/settings_screen.dart';
 import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +21,7 @@ class HomeNavigationController extends GetxController {
       page: UserOrdersScreen(),
     ),
     HomeNavigationModel(
-        icon: "assets/icons/setting.svg", page: UserOrdersScreen()),
+        icon: "assets/icons/setting.svg", page: SettingsScreen()),
   ].obs;
 
   final RxInt _selectedIndex = 0.obs;

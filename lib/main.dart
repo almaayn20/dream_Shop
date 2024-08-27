@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         locale: localeController.language,
         translations: AppTranslation(),
         initialRoute: AuthBox.isUserLoggedIn()
-            ? ScreensRoutes.welcomeScreen // return to  ScreensRoutes.homeScreen
+            ? ScreensRoutes.homeScreen // return to  ScreensRoutes.homeScreen
             : ScreensRoutes.welcomeScreen,
         getPages: ScreensList.screensList,
         debugShowCheckedModeBanner: false,
