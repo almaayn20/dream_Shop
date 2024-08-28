@@ -113,8 +113,9 @@ class AddNewOrderController extends GetxController {
 
     result.fold((failure) {
       errorMessage.value = failure.message;
-    }, (s) {
-      getUserOrdersUseCaseController.getUserOrders(1);
+    }, (responseOrder) async {
+      await getUserOrdersUseCaseController.getUserOrders(1);
+      getUserOrdersUseCaseController.addUserOrderToUi(responseOrder);
     });
     isLoading.value = false;
   }

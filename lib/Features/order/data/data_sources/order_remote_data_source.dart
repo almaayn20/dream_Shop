@@ -24,6 +24,11 @@ class OrderRemoteDataSourceImpl extends OrderRemoteDataSource {
       "userId": orderEntity.userID,
       "date": orderEntity.orderDate,
       "products": orderEntity.orderProducts
+          .map((product) => {
+                "productId": product.productID,
+                "quantity": product.productQuantity,
+              })
+          .toList()
     });
 
     return _getOrderResponseEntity(response);

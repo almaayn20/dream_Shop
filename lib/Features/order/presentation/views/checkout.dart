@@ -12,6 +12,7 @@ import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/core/widgets/back.dart';
+import 'package:foody/core/widgets/indicator.dart';
 import 'package:foody/core/widgets/snack_bar.dart';
 import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
@@ -35,7 +36,9 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
         resizeToAvoidBottomInset: true,
         body: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: _buildContent(context),
+          child: WrapperIndicator(
+              loading: controller.isLoading.value,
+              child: _buildContent(context)),
         ),
       );
     });
@@ -117,19 +120,17 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
                       userID: 109,
                       orderDate: orderDate,
                       orderProducts: controller.orderProducts);
-                  controller.addNewOrder(orderEntity);
+                  await controller.addNewOrder(orderEntity);
                   if (controller.errorMessage.isNotEmpty) {
                     snackBarCustom(
                         context, controller.errorMessage.value, '', () {});
                   } else {
                     snackBarCustom(
                         context, 'Order Completed Successfuly', '', () {});
-                    homeNavigationController.onItemTapped(0);
-                    int count = 0;
-
+                    homeNavigationController.onItemTapped(2);
+                    //    Get.offNamed(ScreensRoutes.userOrdersScreen);
                     Get.offNamedUntil(
-                      ScreensRoutes
-                          .homeScreen, // The route you want to navigate to
+                      ScreensRoutes.homeScreen,
                       (route) =>
                           route.isFirst ||
                           Get.previousRoute == Get.currentRoute,

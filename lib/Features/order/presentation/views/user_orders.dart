@@ -45,7 +45,9 @@ class LastedOrders extends GetView<GetUserOrdersController> {
       return ListView.separated(
         itemCount: controller.userOrders.length,
         itemBuilder: (context, index) {
-          return OrderCard(userOrdersController: controller, index: index);
+          return OrderCard(
+              userOrdersController: controller,
+              index: controller.userOrders.length - 1 - index);
         },
         separatorBuilder: (context, index) {
           return SizedBox(height: 20.0.h); // Adjust the height to your needs
@@ -116,14 +118,21 @@ class OrderCard extends StatelessWidget {
                       Row(
                         children: [
                           Icon(Icons.check_circle,
-                              color: Colors.green, size: 16),
+                              color: (order.orderId == 1 || order.orderId == 2)
+                                  ? Colors.green
+                                  : AppColors.orange100,
+                              size: 16),
                           SizedBox(width: 4.w),
                           Text(
                             (order.orderId == 1 || order.orderId == 2)
                                 ? OrderStatusEnum.delivered.label
                                 : order.orderStatus!.label,
-                            style:
-                                TextStyle(color: Colors.green, fontSize: 14.sp),
+                            style: TextStyle(
+                                color:
+                                    (order.orderId == 1 || order.orderId == 2)
+                                        ? Colors.green
+                                        : AppColors.orange100,
+                                fontSize: 14.sp),
                           ),
                         ],
                       ),

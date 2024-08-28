@@ -5,8 +5,6 @@ import 'package:foody/Features/login/presentation/views/widgets/form_label_field
 import 'package:foody/core/helper/validations.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:inspection/inspection.dart';
-import 'package:intl/intl.dart';
 
 class LoginFormWidget extends StatelessWidget {
   final TextEditingController emailController, passwordController;

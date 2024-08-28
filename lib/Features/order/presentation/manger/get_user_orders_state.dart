@@ -23,8 +23,14 @@ class GetUserOrdersController extends GetxController {
     result.fold((failure) {
       errorMessage.value = failure.message;
     }, (orders) {
+      //    userOrders.assignAll(orders.reversed.toList());
       userOrders.assignAll(orders);
     });
     isLoading.value = false;
+  }
+
+  void addUserOrderToUi(OrderResponseEntity orderResponseEntity) {
+    //  userOrders.insert(0, orderResponseEntity);
+    userOrders.add(orderResponseEntity);
   }
 }

@@ -6,7 +6,9 @@ import 'package:foody/core/constants/spacing.dart';
 import 'package:timelines/timelines.dart';
 
 class DeliveryProcesses extends StatelessWidget {
-  const DeliveryProcesses({Key? key}) : super(key: key);
+  final OrderStatusEnum orderStatus;
+  const DeliveryProcesses({Key? key, required this.orderStatus})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +51,22 @@ class DeliveryProcesses extends StatelessWidget {
             );
           },
           indicatorBuilder: (_, index) {
-            return DotIndicator(
-              color: OrderStatusEnum.values[index].isCompleted
-                  ? Colors.green
-                  : AppColors.orange100,
-              child: Icon(
-                Icons.check,
-                color: AppColors.white100,
-                size: 12.0.sp,
-              ),
-            );
+            if (orderStatus.index >= index) {
+              return DotIndicator(
+                color: OrderStatusEnum.values[index].isCompleted
+                    ? Colors.green
+                    : AppColors.orange100,
+                child: Icon(
+                  Icons.check,
+                  color: AppColors.white100,
+                  size: 12.0.sp,
+                ),
+              );
+            } else {
+              return OutlinedDotIndicator(
+                borderWidth: 2.5,
+              );
+            }
           },
           connectorBuilder: (_, index, ___) => SolidLineConnector(
             color:

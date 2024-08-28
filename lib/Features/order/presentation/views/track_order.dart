@@ -6,6 +6,7 @@ import 'package:foody/Features/order/presentation/manger/track_order_state.dart'
 import 'package:foody/Features/order/presentation/widgets/delivery_processes.dart';
 import 'package:foody/Features/order/presentation/widgets/order_product_card.dart';
 import 'package:foody/core/constants/colors.dart';
+import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
 import 'package:get/get.dart';
@@ -35,8 +36,13 @@ class TrackOrderScreen extends GetView<TrackOrderController> {
                       style: TextStyle(
                           fontSize: 16.sp, fontWeight: FontWeight.bold)),
                   initiallyExpanded: true,
-                  children: const [
-                    DeliveryProcesses(),
+                  children: [
+                    DeliveryProcesses(
+                      orderStatus: (controller.order.orderId == 1 ||
+                              controller.order.orderId == 2)
+                          ? OrderStatusEnum.delivered
+                          : controller.order.orderStatus!,
+                    ),
                   ]),
               SizedBox(height: 16.h),
               ExpansionTile(

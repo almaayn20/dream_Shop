@@ -36,7 +36,6 @@ class HomeController extends GetxController {
     if (categoriesController.errorMessage.isNotEmpty ||
         productsController.errorMessage.isNotEmpty ||
         productsByCategoryController.errorMessage.isNotEmpty) {
-      isLoading.value = false;
       errorMessage.value =
           '${categoriesController.errorMessage.value}  ${productsController.errorMessage.value}  ${productsByCategoryController.errorMessage.value}';
     }
