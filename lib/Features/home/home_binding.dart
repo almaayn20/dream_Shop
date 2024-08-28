@@ -17,6 +17,7 @@ class HomeBinding extends Bindings {
     ProductBinding().dependencies();
     OrderBinding().dependencies();
     SettingsBinding().dependencies();
+    OrderBinding().dependencies();
 
     Get.lazyPut(() => HomeNavigationController(), fenix: true);
 

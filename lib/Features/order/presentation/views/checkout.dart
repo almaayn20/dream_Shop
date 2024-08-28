@@ -128,7 +128,7 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
                     snackBarCustom(
                         context, 'Order Completed Successfuly', '', () {});
                     homeNavigationController.onItemTapped(2);
-                    //    Get.offNamed(ScreensRoutes.userOrdersScreen);
+                    //      Get.off(ScreensRoutes.userOrdersScreen);
                     Get.offNamedUntil(
                       ScreensRoutes.homeScreen,
                       (route) =>

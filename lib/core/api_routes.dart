@@ -41,26 +41,5 @@ class ApiConstants {
   ///=========================================   User Urls ===============================================
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  static String getUserById = "/get-user-by-id";
-  static String editProfile = "/edit-profile";
-// body: {'firstname' : name,'lastname' : lastname,'phone': phone}
-  static String getUserUpdated = "/get-user-updated";
-  static String changePassword = "/change-password";
-// body: {'currentPassword' ,'newPassword' }
-  static String changeImageProfile = "/change-image-profile";
-// body :{image}
-  static String registerDelivery = "/register-delivery";
-  static String registerClient = "/register-client";
-  static String getAddresses = "/get-addresses";
-
-  static String deleteStreetAddress(String addressId) =>
-      '/delete-street-address/$addressId';
-  static String addNewAddressLocation = "/add-new-address";
-// body: {'street'    : street, 'reference' : reference, 'latitude'  : latitude,'longitude' : longitude}
-  static String getAddressOne = "/get-address";
-  static String updateNotificationToken = "/update-notification-token";
-// body: {'nToken' : nToken}
-  static String getAdminsNotificationToken = "/get-admins-notification-token";
-  static String updateDeliveryToClient(String personId) =>
-      '/update-delivery-to-client/$personId';
+  static String getUserProfile(String userId) => '/users/$userId';
 }

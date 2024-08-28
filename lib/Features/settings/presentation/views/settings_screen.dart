@@ -8,6 +8,7 @@ import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/shadow.dart';
 import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/core/widgets/material.dart';
+import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
 
 class SettingsScreen extends GetView<SettingsController> {
@@ -79,10 +80,7 @@ class SettingsScreen extends GetView<SettingsController> {
                     SettingsItem(
                       icon: "assets/icons/person.svg",
                       label: "My Profile",
-                      onTap: () => showDatePicker(
-                          context: context,
-                          firstDate: DateTime(2001),
-                          lastDate: DateTime(2002)),
+                      onTap: () => Get.toNamed(ScreensRoutes.profileScreen),
                     ),
                     const SettingsItem(
                       icon: "assets/icons/language.svg",

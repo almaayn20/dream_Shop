@@ -31,6 +31,7 @@ class ProductEntityAdapter extends TypeAdapter<ProductEntity> {
   @override
   void write(BinaryWriter writer, ProductEntity obj) {
     writer
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.productId)
       ..writeByte(1)
@@ -42,7 +43,11 @@ class ProductEntityAdapter extends TypeAdapter<ProductEntity> {
       ..writeByte(4)
       ..write(obj.productDescription)
       ..writeByte(5)
-      ..write(obj.productCategoryId);
+      ..write(obj.productCategoryId)
+      ..writeByte(6)
+      ..write(obj.productRate)
+      ..writeByte(7)
+      ..write(obj.productRateCount);
   }
 
   @override

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
+import 'package:get/get.dart';
 
 class FormFieldWidget extends StatelessWidget {
   final String hintText;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
   final TextInputType textInputType;
   final TextInputAction textInputAction;
@@ -13,7 +14,9 @@ class FormFieldWidget extends StatelessWidget {
   final bool showObscureToggle;
   final int maxLength;
   final int? maxLines;
-  final bool darkTheme;
+  final bool? darkTheme;
+  final bool? enabled;
+  final String? initialValue;
 
   final VoidCallback? onPressSufixobscureTextIcon;
   final String? Function(String?)? onSubmitted;
@@ -21,8 +24,8 @@ class FormFieldWidget extends StatelessWidget {
   const FormFieldWidget({
     super.key,
     required this.hintText,
-    required this.controller,
-    required this.darkTheme,
+    this.controller,
+    this.darkTheme,
     this.validator,
     this.obscureText = false,
     this.showObscureToggle = false,
@@ -32,6 +35,8 @@ class FormFieldWidget extends StatelessWidget {
     this.onPressSufixobscureTextIcon,
     this.textInputAction = TextInputAction.next,
     this.textInputType = TextInputType.text,
+    this.enabled,
+    this.initialValue,
   });
 
   @override
@@ -41,10 +46,12 @@ class FormFieldWidget extends StatelessWidget {
         vertical: AppSpacing.space12,
       ),
       child: TextFormField(
+        initialValue: initialValue,
         controller: controller,
         onFieldSubmitted: onSubmitted,
         maxLines: obscureText ? 1 : maxLines,
         maxLength: maxLength,
+        enabled: enabled,
         //      autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: textInputType,
         textInputAction: textInputAction,
@@ -79,7 +86,7 @@ class FormFieldWidget extends StatelessWidget {
           errorStyle: Theme.of(context).textTheme.caption?.copyWith(
                 color: Theme.of(context).colorScheme.error,
               ),
-          fillColor: darkTheme ? AppColors.dark80 : AppColors.white100,
+          fillColor: Get.isDarkMode ? AppColors.dark80 : AppColors.white100,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppRadius.border12),
             borderSide: const BorderSide(
@@ -90,7 +97,7 @@ class FormFieldWidget extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppRadius.border12),
             borderSide: BorderSide(
-              color: darkTheme ? AppColors.dark80 : AppColors.gray20,
+              color: Get.isDarkMode ? AppColors.dark80 : AppColors.gray20,
               width: 1,
             ),
           ),

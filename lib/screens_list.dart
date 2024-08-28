@@ -16,6 +16,8 @@ import 'package:foody/Features/order/presentation/views/user_orders.dart';
 import 'package:foody/Features/product/presentation/manger/products_base_state.dart';
 import 'package:foody/Features/product/presentation/views/products_screen.dart';
 import 'package:foody/Features/product/product_binding.dart';
+import 'package:foody/Features/profile/presentation/views/profile_screen.dart';
+import 'package:foody/Features/profile/profile_binding.dart';
 import 'package:foody/Features/settings/presentation/views/settings_screen.dart';
 import 'package:foody/Features/settings/settings_binding.dart';
 import 'package:foody/screen_routes.dart';
@@ -68,6 +70,11 @@ class ScreensList {
       name: ScreensRoutes.settingsScreen,
       page: () => SettingsScreen(),
       binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: ScreensRoutes.profileScreen,
+      page: () => ProfileScreen(),
+      binding: ProfileBinding(),
     ),
   ];
 }

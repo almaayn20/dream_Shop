@@ -10,4 +10,5 @@ class ScreensRoutes {
   static const userOrdersScreen = "/userOrdersScreen";
   static const trackOrderScreen = "/trackOrderScreen";
   static const settingsScreen = "/settingsScreen";
+  static const profileScreen = "/profileScreen";
 }

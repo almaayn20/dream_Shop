@@ -6,6 +6,8 @@ import 'package:foody/Features/login/domain/entities/user_entity.dart';
 import 'package:foody/Features/order/domain/entities/order_entity.dart';
 import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
+import 'package:foody/Features/profile/domain/entities/geolocation_entity.dart';
+import 'package:foody/Features/profile/domain/entities/profile_entity.dart';
 import 'package:foody/core/constants/api_keys.dart';
 import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/hive_boxes/auth_box.dart';
@@ -52,6 +54,8 @@ Future<void> initialHive() async {
 void registerHiveAdapters() {
   Hive.registerAdapter(UserEntityAdapter());
   Hive.registerAdapter(ProductEntityAdapter());
+  Hive.registerAdapter(ProfileEntityAdapter());
+  Hive.registerAdapter(GeolocationEntityAdapter());
 }
 
 Future<void> openHiveBoxes() async {
@@ -59,6 +63,7 @@ Future<void> openHiveBoxes() async {
   await Hive.openBox(SettingsBox.boxKey);
   await Hive.openBox<ProductEntity>(kProductsBox);
   await Hive.openBox(authBox);
+  await Hive.openBox<ProfileEntity>(kProfileBox);
 }
 
 Future<String> GetApplicationDocumentsDirectory() async {
