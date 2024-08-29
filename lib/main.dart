@@ -35,9 +35,7 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, child) => GetMaterialApp(
         locale: localeController.language,
         translations: AppTranslation(),
-        initialRoute: AuthBox.isUserLoggedIn()
-            ? ScreensRoutes.homeScreen // return to  ScreensRoutes.homeScreen
-            : ScreensRoutes.welcomeScreen,
+        initialRoute: ScreensRoutes.splashScreen,
         getPages: ScreensList.screensList,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light(context),

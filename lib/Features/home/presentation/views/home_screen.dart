@@ -13,6 +13,7 @@ import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/core/widgets/indicator.dart';
+import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -162,15 +163,18 @@ class HomeScreen extends GetView<HomeController> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSpacing.space28),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(AppRadius.border12),
-                  ),
-                  child: Image.asset(
-                    "assets/images/user_avatar.png",
-                    width: 38.w,
-                    height: 38.w,
-                    fit: BoxFit.cover,
+                child: InkWell(
+                  onTap: () => Get.toNamed(ScreensRoutes.profileScreen),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(AppRadius.border12),
+                    ),
+                    child: Image.asset(
+                      "assets/images/user_avatar.png",
+                      width: 38.w,
+                      height: 38.w,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
