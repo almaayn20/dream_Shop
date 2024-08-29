@@ -7,6 +7,7 @@ import 'package:foody/Features/home/presentation/widgets/products_slider.dart';
 import 'package:foody/Features/home/presentation/widgets/search_section.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/Features/product/presentation/manger/products_by_category_state.dart';
+import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
 
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
@@ -17,6 +18,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 class HomeScreen extends GetView<HomeController> {
   HomeScreen({Key? key}) : super(key: key);
+  final GetUserProfileController profileController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +122,7 @@ class HomeScreen extends GetView<HomeController> {
 
   PreferredSizeWidget _buildAppBar() {
     return PreferredSize(
-      preferredSize: Size.fromHeight(50.h), // Set this height
+      preferredSize: Size.fromHeight(54.h), // Set this height
       child: SafeArea(
         child: Container(
           color: Colors.transparent,
@@ -132,29 +134,25 @@ class HomeScreen extends GetView<HomeController> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Flexible(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Deliver to",
-                            style: TextStyle(
-                              color: AppColors.gray100,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Welcome to",
+                          style: TextStyle(
+                            color: AppColors.gray100,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
                           ),
-                          SizedBox(width: 5.w),
-                          SvgPicture.asset("assets/icons/arrow_down.svg"),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     Flexible(
                       child: Text(
-                        "4102 Pretty View Lane",
+                        'Dream Store',
                         style: TextStyle(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 22.sp,
+                          fontWeight: FontWeight.w800,
                           color: AppColors.orange100,
                         ),
                       ),

@@ -8,6 +8,7 @@ import 'package:foody/Features/order/presentation/widgets/location_card.dart';
 import 'package:foody/Features/payment/data/models/payment_intent_input_model.dart';
 import 'package:foody/Features/payment/presentation/manger/payment_state.dart';
 import 'package:foody/Features/payment/presentation/widgets/payment_methods_list_view.dart';
+import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
@@ -22,6 +23,7 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
   CheckoutScreen({super.key});
 
   final PaymentController paymentController = Get.find();
+  final GetUserProfileController profileController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +119,7 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
                   String orderDate =
                       DateFormat('yyyy-MM-dd').format(DateTime.now());
                   OrderEntity orderEntity = OrderEntity(
-                      userID: 109,
+                      userID: profileController.profileEntity.value!.userId!,
                       orderDate: orderDate,
                       orderProducts: controller.orderProducts);
                   await controller.addNewOrder(orderEntity);

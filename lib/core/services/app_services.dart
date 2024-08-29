@@ -8,10 +8,13 @@ import 'package:foody/Features/order/domain/entities/order_product_entity.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/Features/profile/domain/entities/geolocation_entity.dart';
 import 'package:foody/Features/profile/domain/entities/profile_entity.dart';
+import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
+import 'package:foody/Features/profile/profile_binding.dart';
 import 'package:foody/core/constants/api_keys.dart';
 import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/hive_boxes/auth_box.dart';
 import 'package:foody/core/hive_boxes/settings_box.dart';
+import 'package:foody/core/utils/api_service.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
@@ -25,7 +28,9 @@ class AppServices extends GetxService {
     AppPrint.printInfo(":::::::::::::Initialize App services");
 
     Get.lazyPut(() => AppLocallcontroller());
-
+    Get.lazyPut(() => ApiService(), fenix: true);
+    ProfileBinding().dependencies();
+    Get.find<GetUserProfileController>();
     return this;
   }
 }

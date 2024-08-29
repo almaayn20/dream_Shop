@@ -5,6 +5,7 @@ import 'package:foody/Features/order/domain/entities/add_order_response_entity.d
 import 'package:foody/Features/order/presentation/manger/add_new_order_state.dart';
 import 'package:foody/Features/order/presentation/manger/get_user_orders_state.dart';
 import 'package:foody/Features/order/presentation/manger/track_order_state.dart';
+import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/constants/radius.dart';

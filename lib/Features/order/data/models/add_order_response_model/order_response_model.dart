@@ -1,5 +1,7 @@
 import 'package:foody/Features/order/domain/entities/add_order_response_entity.dart';
+import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
 import 'package:foody/core/constants/constants.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'product.dart';
@@ -9,6 +11,7 @@ class OrderResponseModel extends OrderResponseEntity {
   int? userId;
   String? date;
   List<Product>? products;
+  final GetUserProfileController profileController = Get.find();
 
   OrderResponseModel({
     this.id,

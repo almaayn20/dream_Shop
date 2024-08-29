@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
 import 'package:foody/Features/settings/presentation/manger/settings_state.dart';
 import 'package:foody/Features/settings/presentation/widgets/settings_item.dart';
 import 'package:foody/core/constants/colors.dart';
@@ -12,7 +13,9 @@ import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
 
 class SettingsScreen extends GetView<SettingsController> {
-  const SettingsScreen({super.key});
+  SettingsScreen({super.key});
+
+  final GetUserProfileController profileController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,7 @@ class SettingsScreen extends GetView<SettingsController> {
                     height: 20.h,
                   ),
                   Text(
-                    "Farion Wick",
+                    profileController.profileEntity.value!.userName!,
                     style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w700,
@@ -61,7 +64,7 @@ class SettingsScreen extends GetView<SettingsController> {
                     height: 8.h,
                   ),
                   Text(
-                    "farionwick@gmail.com",
+                    profileController.profileEntity.value!.userEmail!,
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w300,
