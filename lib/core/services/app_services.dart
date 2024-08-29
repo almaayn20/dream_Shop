@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:foody/Features/login/domain/entities/user_entity.dart';
 import 'package:foody/Features/order/domain/entities/order_entity.dart';
@@ -10,7 +11,6 @@ import 'package:foody/Features/profile/domain/entities/geolocation_entity.dart';
 import 'package:foody/Features/profile/domain/entities/profile_entity.dart';
 import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
 import 'package:foody/Features/profile/profile_binding.dart';
-import 'package:foody/core/constants/api_keys.dart';
 import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/hive_boxes/auth_box.dart';
 import 'package:foody/core/hive_boxes/settings_box.dart';
@@ -39,6 +39,11 @@ Future<void> initialServices() async {
   await Get.putAsync(() => AppServices().init());
 }
 
+Future<void> initENV() async {
+  await dotenv.load(fileName: ".env");
+  print(dotenv.env['GOOGLE_MAPS_KEY']);
+}
+
 Future<void> initialHive() async {
   // Request storage permissions for Android and iOS
   await requestStoragePermissions();
@@ -47,7 +52,7 @@ Future<void> initialHive() async {
   String appDocPath = await GetApplicationDocumentsDirectory();
   Hive.init(appDocPath);
 
-  Stripe.publishableKey = ApiKeys.publishableKey;
+  Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY']!;
 
   // Register adapters
   registerHiveAdapters();

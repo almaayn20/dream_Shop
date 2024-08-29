@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:foody/Features/payment/data/models/ephemeral_key_model/ephemeral_key_model.dart';
 import 'package:foody/Features/payment/data/models/init_payment_sheet_input_model.dart';
 import 'package:foody/Features/payment/data/models/payment_intent_input_model.dart';
 import 'package:foody/Features/payment/data/models/payment_intent_model/payment_intent_model.dart';
-import 'package:foody/core/constants/api_keys.dart';
 
 import '../../../../core/utils/api_service.dart';
 
@@ -26,7 +26,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDataSource {
       body: paymentIntentInputModel.toJson(),
       contentType: Headers.formUrlEncodedContentType,
       url: 'https://api.stripe.com/v1/payment_intents',
-      token: ApiKeys.secretKey,
+      token: dotenv.env['STRIPE_SECRET_KEY']!,
     );
     var jsonResponse =
         jsonDecode(response.body); // Parse the response body into a JSON object
@@ -59,9 +59,9 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDataSource {
         body: {'customer': customerId},
         contentType: Headers.formUrlEncodedContentType,
         url: 'https://api.stripe.com/v1/ephemeral_keys',
-        token: ApiKeys.secretKey,
+        token: dotenv.env['STRIPE_SECRET_KEY']!,
         headers: {
-          'Authorization': "Bearer ${ApiKeys.secretKey}",
+          'Authorization': "Bearer ${dotenv.env['STRIPE_SECRET_KEY']!}",
           'Stripe-Version': '2023-08-16',
         });
     var jsonResponse =
