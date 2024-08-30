@@ -58,7 +58,6 @@ flutter:
   assets:
     - assets/images/
     - assets/images/categories/
-    - assets/images/restaurants/
     - assets/fonts/
     - assets/icons/
     - assets/logo/
