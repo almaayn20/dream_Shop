@@ -10,6 +10,7 @@ import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
+import 'package:foody/core/widgets/indicator.dart';
 import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -41,19 +42,19 @@ class LastedOrders extends GetView<GetUserOrdersController> {
         return Center(child: Text(controller.errorMessage.value));
       }
 
-      if (controller.isLoading.value) {
-        return Center(child: CircularProgressIndicator());
-      }
-      return ListView.separated(
-        itemCount: controller.userOrders.length,
-        itemBuilder: (context, index) {
-          return OrderCard(
-              userOrdersController: controller,
-              index: controller.userOrders.length - 1 - index);
-        },
-        separatorBuilder: (context, index) {
-          return SizedBox(height: 20.0.h); // Adjust the height to your needs
-        },
+      return WrapperIndicator(
+        loading: controller.isLoading.value,
+        child: ListView.separated(
+          itemCount: controller.userOrders.length,
+          itemBuilder: (context, index) {
+            return OrderCard(
+                userOrdersController: controller,
+                index: controller.userOrders.length - 1 - index);
+          },
+          separatorBuilder: (context, index) {
+            return SizedBox(height: 20.0.h); // Adjust the height to your needs
+          },
+        ),
       );
     });
   }

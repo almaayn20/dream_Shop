@@ -25,7 +25,6 @@ class GetUserProfileController extends GetxController {
       errorMessage.value = failure.message;
     }, (profile) {
       profileEntity.value = profile;
-      print(profileEntity.value!.userEmail!);
     });
     isLoading.value = false;
   }
