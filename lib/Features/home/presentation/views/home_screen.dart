@@ -19,29 +19,25 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 class HomeScreen extends GetView<HomeController> {
   HomeScreen({Key? key}) : super(key: key);
-  final GetUserProfileController profileController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (controller.isLoading.value) {
-        return const Center(child: CircularProgressIndicator());
-      }
+      // if (controller.isLoading.value) {
+      //   return const Center(child: CircularProgressIndicator());
+      // }
 
-      if (controller.errorMessage.isNotEmpty) {
-        return Center(child: Text(controller.errorMessage.value));
-      }
-      return WrapperIndicator(
-        loading: controller.isLoading.value,
-        child: Scaffold(
-          appBar: _buildAppBar(),
-          backgroundColor: AppColors.white100,
-          resizeToAvoidBottomInset: true,
-          body: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            child: SingleChildScrollView(
-              child: _buildContent(context),
-            ),
+      // if (controller.errorMessage.isNotEmpty) {
+      //   return Center(child: Text(controller.errorMessage.value));
+      // }
+      return Scaffold(
+        appBar: _buildAppBar(),
+        backgroundColor: AppColors.white100,
+        resizeToAvoidBottomInset: true,
+        body: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: SingleChildScrollView(
+            child: _buildContent(context),
           ),
         ),
       );
@@ -54,24 +50,32 @@ class HomeScreen extends GetView<HomeController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SearchSection(),
-        SizedBox(height: 30.h),
-        CategoriesList(),
-        controller.productsByTitleController.text.value.isNotEmpty &&
-                controller.productsByTitleController.searchTextController.value
-                        .text !=
-                    ''
-            ? searchBuilder(context)
-            : const SizedBox(),
-        ProductsSlider(
-            context: context,
-            title: 'Top Products',
-            products: controller.productsController.products),
-        controller.productsByCategoryController.isLoading.value
-            ? Center(child: CircularProgressIndicator())
-            : ProductsSlider(
-                context: context,
-                title: controller.categoriesController.currentCategoryId,
-                products: controller.productsByCategoryController.products),
+        controller.errorMessage.isNotEmpty
+            ? Center(child: Text(controller.errorMessage.value))
+            : Column(
+                children: [
+                  SizedBox(height: 30.h),
+                  CategoriesList(),
+                  controller.productsByTitleController.text.value.isNotEmpty &&
+                          controller.productsByTitleController
+                                  .searchTextController.value.text !=
+                              ''
+                      ? searchBuilder(context)
+                      : const SizedBox(),
+                  ProductsSlider(
+                    context: context,
+                    title: 'Top Products',
+                    products: controller.productsController.products,
+                    isLodaing: controller.isLoading.value,
+                  ),
+                  ProductsSlider(
+                    context: context,
+                    title: controller.categoriesController.currentCategoryId,
+                    products: controller.productsByCategoryController.products,
+                    isLodaing: controller.isLoading.value,
+                  ),
+                ],
+              )
       ],
     );
   }
@@ -108,6 +112,7 @@ class HomeScreen extends GetView<HomeController> {
           context: context,
           title: controller.productsByTitleController.text.value,
           products: snapshot.data!,
+          isLodaing: controller.productsByTitleController.isLoading.value,
         );
       },
     );
@@ -118,6 +123,7 @@ class HomeScreen extends GetView<HomeController> {
       context: context,
       title: controller.productsByTitleController.text.value,
       products: controller.productsByTitleController.products,
+      isLodaing: controller.productsByTitleController.isLoading.value,
     );
   }
 

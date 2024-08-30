@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:foody/Features/category/domain/entities/category_entity.dart';
 import 'package:foody/Features/category/domain/use_cases/get_all_categories_use_case.dart';

@@ -6,20 +6,24 @@ import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/Features/product/presentation/views/products_screen.dart';
 import 'package:foody/Features/product/presentation/widgets/product_container.dart.dart';
 import 'package:foody/core/constants/colors.dart';
+import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
+import 'package:foody/core/widgets/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProductsSlider extends StatelessWidget {
-  const ProductsSlider({
-    super.key,
-    required this.context,
-    required this.title,
-    required this.products,
-  });
+  const ProductsSlider(
+      {super.key,
+      required this.context,
+      required this.title,
+      required this.products,
+      required this.isLodaing});
 
   final BuildContext context;
   final String title;
   final List<ProductEntity> products;
+  final bool isLodaing;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,10 @@ class ProductsSlider extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
-                    onPressed: () => Get.to(ProductsScreen(products: products)),
+                    onPressed: () => Get.to(() => ProductsScreen(
+                          products: products,
+                          isLoading: isLodaing,
+                        )),
                     child: Text(
                       ("View All"),
                       style: TextStyle(
@@ -69,16 +76,19 @@ class ProductsSlider extends StatelessWidget {
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: 252.w,
-            child: ListView.builder(
-              itemCount: products.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return ProductContainer(
-                  productEntity: products[index],
-                  index: index,
-                  length: products.length,
-                );
-              },
+            child: Obx(
+              () => ListView.builder(
+                itemCount: products.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return ProductContainer(
+                    productEntity: products[index],
+                    index: index,
+                    length: products.length,
+                    isLoading: isLodaing,
+                  );
+                },
+              ),
             ),
           ),
         )

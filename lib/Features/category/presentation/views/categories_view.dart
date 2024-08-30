@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foody/Features/category/presentation/manger/category_state.dart';
 import 'package:foody/Features/category/presentation/widgets/category_container.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CategoriesList extends GetView<CategoriesController> {
   @override
@@ -16,30 +17,35 @@ class CategoriesList extends GetView<CategoriesController> {
             final isSelected = controller.currentCategoryId ==
                 controller.categories[index].categoryTitle;
 
-            return Row(
-              children: [
-                index == 0
-                    ? SizedBox(
-                        width: 16.w,
-                      )
-                    : const SizedBox(),
-                GestureDetector(
-                  onTap: () => controller.onSelectCategory(
-                      controller.categories[index].categoryTitle),
-                  child: categoryContainer(
-                      isSelected: isSelected,
-                      controller: controller,
-                      index: index),
-                ),
-                SizedBox(
-                  width: 16.w,
-                ),
-              ],
-            );
+            return categoryWidget(index, isSelected);
           },
           itemCount: controller.categories.length,
         ),
       ),
+    );
+  }
+
+  Row categoryWidget(int index, bool isSelected) {
+    return Row(
+      children: [
+        index == 0
+            ? SizedBox(
+                width: 16.w,
+              )
+            : const SizedBox(),
+        GestureDetector(
+          onTap: () => controller
+              .onSelectCategory(controller.categories[index].categoryTitle),
+          child: CategoryContainer(
+            isSelected: isSelected,
+            controller: controller,
+            index: index,
+          ),
+        ),
+        SizedBox(
+          width: 16.w,
+        ),
+      ],
     );
   }
 }

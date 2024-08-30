@@ -46,6 +46,7 @@ class CategoriesController extends GetxController {
       categories.value = fetchedCategories;
       currentCategoryId = categories.first.categoryTitle;
     });
+
     isLoading.value = false;
   }
 }
