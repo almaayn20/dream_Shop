@@ -6,6 +6,12 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CategoriesList extends GetView<CategoriesController> {
+  final List<String> categoriesImages = [
+    'assets/images/categories/electronic.png',
+    'assets/images/categories/jewellary.png',
+    'assets/images/categories/men.png',
+    'assets/images/categories/women.png'
+  ];
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -40,6 +46,7 @@ class CategoriesList extends GetView<CategoriesController> {
             isSelected: isSelected,
             controller: controller,
             index: index,
+            image: categoriesImages[index],
           ),
         ),
         SizedBox(

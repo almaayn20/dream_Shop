@@ -15,11 +15,13 @@ class CategoryContainer extends StatelessWidget {
     required this.isSelected,
     required this.controller,
     required this.index,
+    required this.image,
   });
 
   final bool isSelected;
   final CategoriesController controller;
   final int index;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class CategoryContainer extends StatelessWidget {
                       //     color: Colors.grey[300],
                     ))
                 : Image.asset(
-                    'assets/images/categories/burger.png',
+                    image,
                     width: 52.w,
                     height: 52.w,
                     fit: BoxFit.cover,
