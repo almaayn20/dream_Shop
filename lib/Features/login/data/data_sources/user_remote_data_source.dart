@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import '../../../../core/api_routes.dart';
 import '../../../../core/hive_boxes/auth_box.dart';
-import '../../../../core/utils/api_service.dart';
+import '../../../../core/services/api_service.dart';
 import '../../domain/entities/user_entity.dart';
 
 abstract class UserRemoteDataSource {

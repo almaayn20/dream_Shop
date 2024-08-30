@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../core/helper/app_print_class.dart';
+import '../core/utils/app_print_class.dart';
 import '../core/hive_boxes/settings_box.dart';
 
 class AppLocallcontroller extends GetxController {

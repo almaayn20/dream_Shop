@@ -10,7 +10,7 @@ import 'package:foody/Features/payment/payment_binding.dart';
 import 'package:foody/Features/profile/profile_binding.dart';
 import 'package:get/get.dart';
 
-import '../../core/utils/api_service.dart';
+import '../../core/services/api_service.dart';
 
 class OrderBinding extends Bindings {
   @override

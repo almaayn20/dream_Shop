@@ -2,7 +2,7 @@ import 'package:foody/Features/login/presentation/manger/login_controller.dart';
 import 'package:foody/Features/login/presentation/manger/welcome_controller.dart';
 import 'package:get/get.dart';
 
-import '../../core/utils/api_service.dart';
+import '../../core/services/api_service.dart';
 import 'data/data_sources/user_remote_data_source.dart';
 import 'data/repos/user_repo_impl.dart';
 import 'domain/use_cases/login_use_case.dart';

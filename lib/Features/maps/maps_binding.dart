@@ -5,7 +5,7 @@ import 'package:foody/Features/order/domain/use_cases/add_new_order_use_case.dar
 import 'package:foody/Features/order/presentation/manger/add_new_order_state.dart';
 import 'package:get/get.dart';
 
-import '../../core/utils/api_service.dart';
+import '../../core/services/api_service.dart';
 
 class MapsBinding extends Bindings {
   @override

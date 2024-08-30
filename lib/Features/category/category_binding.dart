@@ -4,7 +4,7 @@ import 'package:foody/Features/category/domain/use_cases/get_all_categories_use_
 import 'package:foody/Features/category/presentation/manger/category_state.dart';
 import 'package:get/get.dart';
 
-import '../../core/utils/api_service.dart';
+import '../../core/services/api_service.dart';
 
 class CategoryBinding extends Bindings {
   @override

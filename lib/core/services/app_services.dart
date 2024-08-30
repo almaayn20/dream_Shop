@@ -14,13 +14,13 @@ import 'package:foody/Features/profile/profile_binding.dart';
 import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/hive_boxes/auth_box.dart';
 import 'package:foody/core/hive_boxes/settings_box.dart';
-import 'package:foody/core/utils/api_service.dart';
+import 'package:foody/core/services/api_service.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../localization/local_controller.dart';
-import '../helper/app_print_class.dart';
+import '../utils/app_print_class.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class AppServices extends GetxService {

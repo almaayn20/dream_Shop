@@ -9,7 +9,7 @@ import 'package:foody/core/constants/constants.dart';
 import 'package:hive/hive.dart';
 
 import '../../../../core/api_routes.dart';
-import '../../../../core/utils/api_service.dart';
+import '../../../../core/services/api_service.dart';
 
 abstract class ProfileRemoteDataSource {
   Future<ProfileEntity> getUserProfile({required int userId});

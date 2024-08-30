@@ -1,5 +1,3 @@
-import 'package:foody/core/hive_boxes/auth_box.dart';
-
 class ApiConstants {
   static Map<String, String> getHeaders() {
     return {

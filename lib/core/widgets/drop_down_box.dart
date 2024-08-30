@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/size_config.dart';
+import '../services/size_config.dart';
 
 class DropDownMenuCustom extends StatelessWidget {
   final Map<dynamic, String> entries;

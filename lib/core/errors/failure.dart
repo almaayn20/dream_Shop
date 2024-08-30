@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../helper/app_print_class.dart';
+import '../utils/app_print_class.dart';
 
 abstract class Failure {
   final String message;

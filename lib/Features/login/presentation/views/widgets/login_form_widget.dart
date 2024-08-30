@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foody/Features/login/presentation/manger/login_controller.dart';
-import 'package:foody/core/helper/validations.dart';
+import 'package:foody/core/utils/validations.dart';
 import 'package:foody/core/widgets/form_label_field_widget.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';

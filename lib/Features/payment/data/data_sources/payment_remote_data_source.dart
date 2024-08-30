@@ -7,8 +7,10 @@ import 'package:foody/Features/payment/data/models/ephemeral_key_model/ephemeral
 import 'package:foody/Features/payment/data/models/init_payment_sheet_input_model.dart';
 import 'package:foody/Features/payment/data/models/payment_intent_input_model.dart';
 import 'package:foody/Features/payment/data/models/payment_intent_model/payment_intent_model.dart';
+import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
+import 'package:get/get.dart';
 
-import '../../../../core/utils/api_service.dart';
+import '../../../../core/services/api_service.dart';
 
 abstract class PaymentRemoteDataSource {
   Future<void> makePayment(
@@ -17,6 +19,7 @@ abstract class PaymentRemoteDataSource {
 
 class PaymentRemoteDataSourceImpl extends PaymentRemoteDataSource {
   final ApiService apiService;
+  final GetUserProfileController profileController = Get.find();
 
   PaymentRemoteDataSourceImpl(this.apiService);
 
@@ -44,7 +47,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDataSource {
             initiPaymentSheetInputModel.ephemeralKeySecret,
         customerId: initiPaymentSheetInputModel.customerId,
         //to do : change name to user name
-        merchantDisplayName: 'Salman',
+        merchantDisplayName: profileController.profileEntity.value!.userName!,
       ),
     );
   }

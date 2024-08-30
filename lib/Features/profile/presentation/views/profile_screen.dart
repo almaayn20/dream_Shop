@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/spacing.dart';
-import 'package:foody/core/utils/size_config.dart';
+import 'package:foody/core/services/size_config.dart';
 import 'package:foody/core/widgets/back.dart';
 import 'package:foody/core/widgets/form_label_field_widget.dart';
 import 'package:foody/core/widgets/indicator.dart';

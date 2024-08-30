@@ -7,7 +7,7 @@ import 'package:foody/core/theme/theme.dart';
 import 'package:foody/screen_routes.dart';
 import 'package:foody/screens_list.dart';
 import 'package:get/get.dart';
-import 'core/utils/size_config.dart';
+import 'core/services/size_config.dart';
 import 'localization/local_controller.dart';
 import 'localization/translation.dart';
 

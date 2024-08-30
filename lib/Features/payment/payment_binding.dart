@@ -8,7 +8,7 @@ import 'package:foody/Features/payment/domain/use_cases/make_stripe_payment_use_
 import 'package:foody/Features/payment/presentation/manger/payment_state.dart';
 import 'package:get/get.dart';
 
-import '../../core/utils/api_service.dart';
+import '../../core/services/api_service.dart';
 
 class PaymentBinding extends Bindings {
   @override

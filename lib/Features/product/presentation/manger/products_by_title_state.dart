@@ -3,7 +3,7 @@ import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/Features/product/domain/use_cases/get_products_by_title_use_case.dart';
 import 'package:foody/Features/product/presentation/manger/products_base_state.dart';
 import 'package:foody/Features/product/presentation/manger/products_top_home_state.dart';
-import 'package:foody/core/helper/app_print_class.dart';
+import 'package:foody/core/utils/app_print_class.dart';
 import 'package:get/get.dart';
 
 class ProductsByTitleController extends ProductsBaseController {

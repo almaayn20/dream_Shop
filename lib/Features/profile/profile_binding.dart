@@ -13,7 +13,7 @@ import 'package:foody/Features/profile/domain/use_cases/get_user_profile_use_cas
 import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
 import 'package:get/get.dart';
 
-import '../../core/utils/api_service.dart';
+import '../../core/services/api_service.dart';
 
 class ProfileBinding extends Bindings {
   @override

@@ -86,6 +86,7 @@ class ProductDetailScreen extends GetView<ProductDetailsController> {
                           "assets/icons/lock.svg",
                           width: 18.w,
                           height: 18.w,
+                          color: AppColors.orange100,
                         ),
                       ),
                       SizedBox(width: 12.w),

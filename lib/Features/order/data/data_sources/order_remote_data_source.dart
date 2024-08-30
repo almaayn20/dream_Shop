@@ -4,7 +4,7 @@ import 'package:foody/Features/order/domain/entities/add_order_response_entity.d
 import 'package:foody/Features/order/domain/entities/order_entity.dart';
 
 import '../../../../core/api_routes.dart';
-import '../../../../core/utils/api_service.dart';
+import '../../../../core/services/api_service.dart';
 
 abstract class OrderRemoteDataSource {
   Future<OrderResponseEntity> addNewOrder({required OrderEntity orderEntity});

@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 import '../product/data/data_sources/product_local_data_source.dart';
 import '../product/domain/use_cases/get_products_use_case.dart';
-import '../../core/utils/api_service.dart';
+import '../../core/services/api_service.dart';
 import '../product/data/data_sources/product_remote_data_source.dart';
 import '../product/data/repos/product_repo_impl.dart';
 
