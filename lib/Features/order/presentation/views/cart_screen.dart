@@ -16,10 +16,6 @@ class CartScreen extends GetView<AddNewOrderController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (controller.isLoading.value) {
-        return const Center(child: CircularProgressIndicator());
-      }
-
       if (controller.errorMessage.isNotEmpty) {
         return Center(child: Text(controller.errorMessage.value));
       }
@@ -30,7 +26,10 @@ class CartScreen extends GetView<AddNewOrderController> {
       return WrapperIndicator(
         loading: controller.isLoading.value,
         child: Scaffold(
-          appBar: AppBar(title: Text('Cart'), centerTitle: true),
+          appBar: AppBar(
+              title: Text('Cart'),
+              centerTitle: true,
+              automaticallyImplyLeading: false),
           backgroundColor: AppColors.white100,
           resizeToAvoidBottomInset: true,
           body: GestureDetector(
@@ -149,7 +148,7 @@ class CartScreen extends GetView<AddNewOrderController> {
   }
 
   Widget orderProductsList(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       itemCount: controller.orderProducts.length,
       itemBuilder: (context, index) {
         OrderProductEntity orderProductEntity = controller.orderProducts[index];
@@ -170,7 +169,12 @@ class CartScreen extends GetView<AddNewOrderController> {
               .toDouble(),
           quantity: orderProductEntity.productQuantity,
           index: index,
-          isCartProduct: false,
+          isCartProduct: true,
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return SizedBox(
+          height: 13.h,
         );
       },
     );

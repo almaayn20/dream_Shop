@@ -32,7 +32,6 @@ class DropDownMenuCustom extends StatelessWidget {
       dropdownMenuEntries: assign(),
       onSelected: (val) {
         controller.text = val.toString();
-        print(val.toString());
       },
     );
   }

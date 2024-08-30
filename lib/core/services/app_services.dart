@@ -41,7 +41,6 @@ Future<void> initialServices() async {
 
 Future<void> initENV() async {
   await dotenv.load(fileName: ".env");
-  print(dotenv.env['GOOGLE_MAPS_KEY']);
 }
 
 Future<void> initialHive() async {

@@ -16,8 +16,6 @@ class GetUserOrdersController extends GetxController {
 
   @override
   void onInit() async {
-    print(profileController.profileEntity.value!.userId!.toString());
-    print(profileController.profileEntity.value!.userEmail!);
     await getUserOrders(profileController.profileEntity.value!.userId!);
     super.onInit();
   }
