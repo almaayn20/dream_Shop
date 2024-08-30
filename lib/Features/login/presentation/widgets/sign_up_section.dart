@@ -6,6 +6,7 @@ import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/shadow.dart';
 import 'package:foody/core/constants/spacing.dart';
+import 'package:foody/core/widgets/snack_bar.dart';
 import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
 
@@ -52,7 +53,14 @@ class SignUpSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                snackBarCustom(
+                    context,
+                    'Sign up is currently suspended, Login with these credentials',
+                    '',
+                    () {});
+                Get.toNamed(ScreensRoutes.loginScreen);
+              },
               child: Container(
                 width: 140.w,
                 height: 54.w,
@@ -83,7 +91,14 @@ class SignUpSection extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                snackBarCustom(
+                    context,
+                    'Sign up is currently suspended, Login with these credentials',
+                    '',
+                    () {});
+                Get.toNamed(ScreensRoutes.loginScreen);
+              },
               child: Container(
                 width: 140.w,
                 height: 54.w,
@@ -121,7 +136,14 @@ class SignUpSection extends StatelessWidget {
           height: 24.h,
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            snackBarCustom(
+                context,
+                'Sign up is currently suspended, Login with these credentials',
+                '',
+                () {});
+            Get.toNamed(ScreensRoutes.loginScreen);
+          },
           child: Container(
             width: double.infinity,
             alignment: Alignment.center,
@@ -151,7 +173,7 @@ class SignUpSection extends StatelessWidget {
         ),
         RichText(
           text: TextSpan(
-            text: ("have account? "),
+            text: ("Have Account ? "),
             style: TextStyle(
               fontWeight: FontWeight.w300,
               fontSize: 16.sp,
@@ -162,7 +184,7 @@ class SignUpSection extends StatelessWidget {
                     ..onTap = () {
                       Get.toNamed(ScreensRoutes.loginScreen);
                     },
-                  text: ("sign in"),
+                  text: ("Sign In"),
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     decoration: TextDecoration.underline,

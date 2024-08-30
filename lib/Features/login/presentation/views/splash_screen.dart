@@ -25,7 +25,9 @@ class SplashScreen extends StatelessWidget {
       screenRouteFunction: () {
         return Future.value(
           AuthBox.isUserLoggedIn()
-              ? ScreensRoutes.homeScreen
+              ? ScreensRoutes.welcomeScreen
+
+              ///
               : ScreensRoutes.welcomeScreen,
         );
       },

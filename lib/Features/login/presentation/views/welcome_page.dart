@@ -45,6 +45,9 @@ class WelcomeScreen extends GetView<WelcomeController> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: 50.h,
+          ),
           _buildMessage(),
           SizedBox(
             height: 110.h,
@@ -60,7 +63,7 @@ class WelcomeScreen extends GetView<WelcomeController> {
       flex: 1,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
             ("Welcom To"),
@@ -70,7 +73,7 @@ class WelcomeScreen extends GetView<WelcomeController> {
             ),
           ),
           Text(
-            ("Foody"),
+            ("Dream"),
             style: TextStyle(
               fontSize: 48.sp,
               fontWeight: FontWeight.w900,
@@ -83,10 +86,10 @@ class WelcomeScreen extends GetView<WelcomeController> {
           Padding(
             padding: EdgeInsets.only(right: 52.w),
             child: Text(
-              ("Your favourite foods delivered fast at your door"),
+              ("Best Products delivered fast at your door"),
               style: TextStyle(
                 fontSize: 18.sp,
-                color: AppColors.dark50,
+                color: AppColors.white100,
               ),
             ),
           ),
