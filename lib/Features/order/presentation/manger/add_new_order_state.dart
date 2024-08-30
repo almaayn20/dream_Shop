@@ -7,6 +7,7 @@ import 'package:foody/Features/product/domain/entities/product_entity.dart';
 import 'package:foody/Features/product/presentation/manger/products_by_category_state.dart';
 import 'package:foody/Features/product/presentation/manger/products_by_title_state.dart';
 import 'package:foody/Features/product/presentation/manger/products_top_home_state.dart';
+import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
 
 class AddNewOrderController extends GetxController {
@@ -116,6 +117,8 @@ class AddNewOrderController extends GetxController {
     }, (responseOrder) async {
       await getUserOrdersUseCaseController.getUserOrders(1);
       getUserOrdersUseCaseController.addUserOrderToUi(responseOrder);
+      orderProducts.clear();
+      Get.toNamed(ScreensRoutes.trackOrderScreen, arguments: responseOrder);
     });
     isLoading.value = false;
   }
