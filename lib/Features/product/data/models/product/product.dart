@@ -27,7 +27,8 @@ class Product extends ProductEntity {
             productDescription: description!,
             productCategoryId: category!,
             productRate: rating!.rate!,
-            productRateCount: rating.count!);
+            productRateCount: rating.count!,
+            isFavorite: false);
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json['id'] as num?,

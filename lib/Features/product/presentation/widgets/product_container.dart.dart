@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
+import 'package:foody/Features/product/presentation/manger/products_base_state.dart';
 import 'package:foody/Features/product/presentation/views/product_details_screen.dart';
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
@@ -9,6 +10,8 @@ import 'package:foody/core/constants/shadow.dart';
 import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/core/widgets/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProductContainer extends StatelessWidget {
@@ -16,6 +19,7 @@ class ProductContainer extends StatelessWidget {
   final int index;
   final int length;
   final bool isLoading;
+  ProductsBaseController controller;
 
   ProductContainer({
     Key? key,
@@ -23,6 +27,7 @@ class ProductContainer extends StatelessWidget {
     required this.index,
     required this.length,
     required this.isLoading,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -133,23 +138,28 @@ class ProductContainer extends StatelessWidget {
             ],
           ),
         ),
-        GestureDetector(
-          onTap: () {},
-          child: Container(
-            width: 28.w,
-            height: 28.w,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: circularRadius(AppRadius.border32),
-              color: productEntity.productId % 2 == 0
-                  ? AppColors.orange100
-                  : AppColors.white21,
-            ),
-            child: SvgPicture.asset(
-              "assets/icons/heart_circle.svg",
-              width: 14.w,
-              height: 14.w,
-              color: AppColors.white100,
+        Obx(
+          () => GestureDetector(
+            onTap: () {
+              controller
+                  .doMakeFavouriteProduct(productEntity.productId.toInt());
+            },
+            child: Container(
+              width: 28.w,
+              height: 28.w,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: circularRadius(AppRadius.border32),
+                color: controller.products[index].isFavorite!
+                    ? AppColors.orange100
+                    : AppColors.white21,
+              ),
+              child: SvgPicture.asset(
+                "assets/icons/heart_circle.svg",
+                width: 14.w,
+                height: 14.w,
+                color: AppColors.white100,
+              ),
             ),
           ),
         ),

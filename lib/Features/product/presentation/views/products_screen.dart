@@ -11,9 +11,13 @@ import 'package:get/get.dart';
 class ProductsScreen extends StatelessWidget {
   final List<ProductEntity> products;
   final bool isLoading;
+  final ProductsBaseController controller;
 
   const ProductsScreen(
-      {super.key, required this.products, required this.isLoading});
+      {super.key,
+      required this.products,
+      required this.isLoading,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +42,7 @@ class ProductsScreen extends StatelessWidget {
                   (index) => ProductContainer(
                     productEntity: products[index],
                     index: index,
+                    controller: controller,
                     length: products.length,
                     isLoading: isLoading,
                   ),

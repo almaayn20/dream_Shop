@@ -19,6 +19,8 @@ class ProductEntity {
   final num productRate;
   @HiveField(7)
   final num productRateCount;
+  @HiveField(8)
+  bool? isFavorite;
 
   ProductEntity(
       {required this.productId,
@@ -28,5 +30,6 @@ class ProductEntity {
       required this.productDescription,
       required this.productCategoryId,
       required this.productRate,
-      required this.productRateCount});
+      required this.productRateCount,
+      required this.isFavorite});
 }

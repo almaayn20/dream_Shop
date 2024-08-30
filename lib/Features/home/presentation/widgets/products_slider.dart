@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:foody/Features/product/domain/entities/product_entity.dart';
+import 'package:foody/Features/product/presentation/manger/products_base_state.dart';
 import 'package:foody/Features/product/presentation/views/products_screen.dart';
 import 'package:foody/Features/product/presentation/widgets/product_container.dart.dart';
 import 'package:foody/core/constants/colors.dart';
@@ -18,12 +19,14 @@ class ProductsSlider extends StatelessWidget {
       required this.context,
       required this.title,
       required this.products,
-      required this.isLodaing});
+      required this.isLodaing,
+      required this.controller});
 
   final BuildContext context;
   final String title;
   final List<ProductEntity> products;
   final bool isLodaing;
+  final ProductsBaseController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +52,7 @@ class ProductsSlider extends StatelessWidget {
                     onPressed: () => Get.to(() => ProductsScreen(
                           products: products,
                           isLoading: isLodaing,
+                          controller: controller,
                         )),
                     child: Text(
                       ("View All"),
@@ -86,6 +90,7 @@ class ProductsSlider extends StatelessWidget {
                     index: index,
                     length: products.length,
                     isLoading: isLodaing,
+                    controller: controller,
                   );
                 },
               ),

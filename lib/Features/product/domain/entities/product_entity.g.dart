@@ -17,15 +17,15 @@ class ProductEntityAdapter extends TypeAdapter<ProductEntity> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ProductEntity(
-      productId: fields[0] as num,
-      name: fields[1] as String,
-      productImage: fields[2] as String,
-      productPrice: fields[3] as num,
-      productDescription: fields[4] as String,
-      productCategoryId: fields[5] as String,
-      productRate: fields[6] as num,
-      productRateCount: fields[7] as num,
-    );
+        productId: fields[0] as num,
+        name: fields[1] as String,
+        productImage: fields[2] as String,
+        productPrice: fields[3] as num,
+        productDescription: fields[4] as String,
+        productCategoryId: fields[5] as String,
+        productRate: fields[6] as num,
+        productRateCount: fields[7] as num,
+        isFavorite: fields[8] as bool);
   }
 
   @override
@@ -47,7 +47,9 @@ class ProductEntityAdapter extends TypeAdapter<ProductEntity> {
       ..writeByte(6)
       ..write(obj.productRate)
       ..writeByte(7)
-      ..write(obj.productRateCount);
+      ..write(obj.productRateCount)
+      ..writeByte(8)
+      ..write(obj.isFavorite);
   }
 
   @override

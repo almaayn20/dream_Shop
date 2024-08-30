@@ -81,23 +81,6 @@ class ProductDetailsAppBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GetBackCustom(),
-                    Container(
-                      width: 28.w,
-                      height: 28.w,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: circularRadius(AppRadius.border32),
-                        color: productEntity.productId % 2 == 0
-                            ? AppColors.orange100
-                            : AppColors.white21,
-                      ),
-                      child: SvgPicture.asset(
-                        "assets/icons/heart_circle.svg",
-                        width: 14.w,
-                        height: 14.w,
-                        color: AppColors.white100,
-                      ),
-                    ),
                   ],
                 ),
               ),

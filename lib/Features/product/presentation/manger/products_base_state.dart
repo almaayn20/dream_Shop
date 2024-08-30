@@ -7,4 +7,10 @@ abstract class ProductsBaseController extends GetxController {
   var isLoading = false.obs;
   var products = <ProductEntity>[].obs;
   var errorMessage = ''.obs;
+
+  void doMakeFavouriteProduct(int id) {
+    final item = products.indexWhere((element) => element.productId == id);
+    products[item].isFavorite = !products[item].isFavorite!;
+    products.refresh();
+  }
 }

@@ -16,13 +16,6 @@ class CartScreen extends GetView<AddNewOrderController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (controller.errorMessage.isNotEmpty) {
-        return Center(child: Text(controller.errorMessage.value));
-      }
-
-      if (controller.orderProducts.isEmpty) {
-        return Center(child: Text('Cart is Empty'));
-      }
       return WrapperIndicator(
         loading: controller.isLoading.value,
         child: Scaffold(
@@ -42,6 +35,13 @@ class CartScreen extends GetView<AddNewOrderController> {
   }
 
   Widget _buildContent(BuildContext context) {
+    if (controller.errorMessage.isNotEmpty) {
+      return Center(child: Text(controller.errorMessage.value));
+    }
+
+    if (controller.orderProducts.isEmpty) {
+      return Center(child: Text('Cart is Empty'));
+    }
     return Padding(
       padding: EdgeInsets.all(AppSpacing.space16),
       child: Column(

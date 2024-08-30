@@ -9,7 +9,6 @@ class PaymentMethodsListView extends StatelessWidget {
   final PaymentController paymentController;
   final List<String> paymentMethodsItems = const [
     'assets/images/card.svg',
-    'assets/images/paypal.svg'
   ];
 
   PaymentMethodsListView({super.key, required this.paymentController});

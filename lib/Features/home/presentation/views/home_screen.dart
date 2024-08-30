@@ -67,12 +67,15 @@ class HomeScreen extends GetView<HomeController> {
                     title: 'Top Products',
                     products: controller.productsController.products,
                     isLodaing: controller.isLoading.value,
+                    controller: controller.productsController,
                   ),
                   ProductsSlider(
                     context: context,
                     title: controller.categoriesController.currentCategoryId,
                     products: controller.productsByCategoryController.products,
-                    isLodaing: controller.isLoading.value,
+                    isLodaing:
+                        controller.productsByCategoryController.isLoading.value,
+                    controller: controller.productsByCategoryController,
                   ),
                 ],
               )
@@ -113,6 +116,7 @@ class HomeScreen extends GetView<HomeController> {
           title: controller.productsByTitleController.text.value,
           products: snapshot.data!,
           isLodaing: controller.productsByTitleController.isLoading.value,
+          controller: controller.productsByTitleController,
         );
       },
     );
@@ -124,6 +128,7 @@ class HomeScreen extends GetView<HomeController> {
       title: controller.productsByTitleController.text.value,
       products: controller.productsByTitleController.products,
       isLodaing: controller.productsByTitleController.isLoading.value,
+      controller: controller.productsByTitleController,
     );
   }
 
