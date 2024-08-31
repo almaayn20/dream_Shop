@@ -22,7 +22,6 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 class HomeScreen extends GetView<HomeController> {
   HomeScreen({Key? key}) : super(key: key);
-  NetworkInfo networkInfo = NetworkInfoImpl();
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +35,11 @@ class HomeScreen extends GetView<HomeController> {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: SingleChildScrollView(
-            child: _buildContent(context),
-          ),
+          child: controller.errorMessage.value.isNotEmpty
+              ? errorWidget(errorMessage: controller.errorMessage.value)
+              : SingleChildScrollView(
+                  child: _buildContent(context),
+                ),
         ),
       );
     });
@@ -161,7 +162,7 @@ class HomeScreen extends GetView<HomeController> {
                     ),
                     Flexible(
                       child: Text(
-                        'Dream Store',
+                        'Dream Shop',
                         style: TextStyle(
                           fontSize: 22.sp,
                           fontWeight: FontWeight.w800,

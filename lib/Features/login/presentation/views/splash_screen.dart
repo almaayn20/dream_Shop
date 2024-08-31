@@ -12,7 +12,7 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen.withScreenRouteFunction(
       duration: 3000,
       splash: Image.asset(
-        'assets/images/logo.png',
+        'assets/logo/splash_logo.png',
         height: 180,
       ),
       splashTransition: SplashTransition.scaleTransition, // Type of transition

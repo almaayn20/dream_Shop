@@ -11,6 +11,7 @@ import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/core/widgets/material.dart';
 import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsScreen extends GetView<SettingsController> {
   SettingsScreen({super.key});
@@ -93,10 +94,15 @@ class SettingsScreen extends GetView<SettingsController> {
                       icon: "assets/icons/theme.svg",
                       label: "Theme",
                     ),
-                    const SettingsItem(
-                      icon: "assets/icons/mail.svg",
-                      label: "Contact Us",
-                    ),
+                    SettingsItem(
+                        icon: "assets/icons/mail.svg",
+                        label: "Contact Us",
+                        onTap: () async {
+                          String _url = 'https://github.com/almaayn20';
+                          if (!await launchUrl(Uri.parse(_url))) {
+                            throw Exception('Could not launch $_url');
+                          }
+                        }),
                     const SettingsItem(
                       icon: "assets/icons/faq.svg",
                       label: "Helps & FAQs",
