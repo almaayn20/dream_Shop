@@ -29,7 +29,9 @@ class LocationSelectorScreen extends GetView<LocationSelectorController> {
             child: SizedBox(
               height: 50.0.h,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  navigator?.pop();
+                },
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppRadius.border32),

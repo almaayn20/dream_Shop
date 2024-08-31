@@ -1,33 +1,65 @@
+import 'package:foody/Features/profile/presentation/manger/get_user_profile_state.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:foody/core/services/location_service.dart';
 import 'package:location/location.dart';
+import 'package:geocoding/geocoding.dart';
 
 class LocationSelectorController extends GetxController {
   late CameraPosition initialCameraPosition;
   late LocationService locationService;
   var selectedLocation = Rxn<LatLng>();
-
+  final GetUserProfileController getUserProfileController = Get.find();
+  Map<String, String> geocodedSelectedLocation = Map();
   GoogleMapController? googleMapController;
+  var isLoading = false.obs;
 
   var markers = <Marker>{}.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
 
-    selectedLocation.value = LatLng(31.187084851056554, 29.928110526889437);
+    selectedLocation.value = LatLng(
+        double.parse(
+            getUserProfileController.profileEntity.value!.userAddress!.lat!),
+        double.parse(
+            getUserProfileController.profileEntity.value!.userAddress!.lng!));
     initialCameraPosition = CameraPosition(
       zoom: 17,
       target: selectedLocation.value!,
     );
+    await getAddressFromLatLng(
+        selectedLocation.value!.latitude, selectedLocation.value!.longitude);
     locationService = LocationService();
     updateMyLocation();
   }
 
-  void onMapTap(LatLng position) {
+  Future<void> getAddressFromLatLng(double latitude, double longitude) async {
+    try {
+      isLoading.value = true;
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(latitude, longitude);
+
+      Placemark place = placemarks[0];
+
+      geocodedSelectedLocation = {
+        'street': place.street!,
+        'locality': place.locality!,
+        'postalCode': place.postalCode!,
+        'country': place.country!,
+      };
+      isLoading.value = false;
+    } catch (e) {
+      isLoading.value = false;
+    }
+  }
+
+  void onMapTap(LatLng position) async {
     selectedLocation.value = position;
     setMyLocationMarker();
+    await getAddressFromLatLng(
+        selectedLocation.value!.latitude, selectedLocation.value!.longitude);
   }
 
   void updateMyLocation() async {
@@ -39,8 +71,11 @@ class LocationSelectorController extends GetxController {
 
       selectedLocation.value =
           LatLng(currentLocation.latitude!, currentLocation.longitude!);
+
       setMyLocationMarker();
       setMyCameraPosition();
+      await getAddressFromLatLng(
+          selectedLocation.value!.latitude, selectedLocation.value!.longitude);
       // locationService.getRealTimeLocationData((locationData) {
       //   setMyLocationMarker(locationData);
       //   setMyCameraPosition(locationData);
@@ -65,6 +100,7 @@ class LocationSelectorController extends GetxController {
       position: LatLng(
           selectedLocation.value!.latitude, selectedLocation.value!.longitude),
     );
+
     markers.clear();
     markers.add(myLocationMarker);
   }

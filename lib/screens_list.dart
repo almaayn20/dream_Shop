@@ -11,6 +11,7 @@ import 'package:foody/Features/login/presentation/views/splash_screen.dart';
 import 'package:foody/Features/login/presentation/views/welcome_page.dart';
 import 'package:foody/Features/maps/maps_binding.dart';
 import 'package:foody/Features/maps/presentation/manger/location_selector_state.dart';
+import 'package:foody/Features/maps/presentation/views/location_selector_screen.dart';
 import 'package:foody/Features/order/order_binding.dart';
 import 'package:foody/Features/order/presentation/views/track_order.dart';
 import 'package:foody/Features/order/presentation/views/user_orders.dart';
@@ -49,7 +50,7 @@ class ScreensList {
     ),
     GetPage(
       name: ScreensRoutes.locationSelectorScreen,
-      page: () => HomeNavigationScreen(),
+      page: () => LocationSelectorScreen(),
       binding: MapsBinding(),
     ),
     GetPage(
