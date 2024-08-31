@@ -12,29 +12,29 @@ import 'package:foody/Features/profile/presentation/manger/get_user_profile_stat
 import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
+import 'package:foody/core/services/network_info.dart';
+import 'package:foody/core/widgets/error_widget.dart';
 import 'package:foody/core/widgets/indicator.dart';
+import 'package:foody/core/widgets/no_internet_widget.dart';
 import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class HomeScreen extends GetView<HomeController> {
   HomeScreen({Key? key}) : super(key: key);
+  NetworkInfo networkInfo = NetworkInfoImpl();
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      // if (controller.isLoading.value) {
-      //   return const Center(child: CircularProgressIndicator());
-      // }
-
-      // if (controller.errorMessage.isNotEmpty) {
-      //   return Center(child: Text(controller.errorMessage.value));
-      // }
       return Scaffold(
         appBar: _buildAppBar(),
         backgroundColor: AppColors.white100,
         resizeToAvoidBottomInset: true,
         body: GestureDetector(
+          onPanDown: (_) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: SingleChildScrollView(
             child: _buildContent(context),
@@ -51,7 +51,7 @@ class HomeScreen extends GetView<HomeController> {
       children: [
         SearchSection(),
         controller.errorMessage.isNotEmpty
-            ? Center(child: Text(controller.errorMessage.value))
+            ? errorWidget(errorMessage: controller.errorMessage.value)
             : Column(
                 children: [
                   SizedBox(height: 30.h),
@@ -64,18 +64,18 @@ class HomeScreen extends GetView<HomeController> {
                       : const SizedBox(),
                   ProductsSlider(
                     context: context,
-                    title: 'Top Products',
-                    products: controller.productsController.products,
-                    isLodaing: controller.isLoading.value,
-                    controller: controller.productsController,
-                  ),
-                  ProductsSlider(
-                    context: context,
                     title: controller.categoriesController.currentCategoryId,
                     products: controller.productsByCategoryController.products,
                     isLodaing:
                         controller.productsByCategoryController.isLoading.value,
                     controller: controller.productsByCategoryController,
+                  ),
+                  ProductsSlider(
+                    context: context,
+                    title: 'Top Products',
+                    products: controller.productsController.products,
+                    isLodaing: controller.isLoading.value,
+                    controller: controller.productsController,
                   ),
                 ],
               )

@@ -15,6 +15,9 @@ class LoginScreen extends GetView<LoginController> {
       () => WrapperIndicator(
         loading: controller.isLoading.value,
         child: GestureDetector(
+          onPanDown: (_) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
             body: SingleChildScrollView(

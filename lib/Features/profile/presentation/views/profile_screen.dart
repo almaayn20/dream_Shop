@@ -7,6 +7,7 @@ import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/spacing.dart';
 import 'package:foody/core/services/size_config.dart';
 import 'package:foody/core/widgets/back.dart';
+import 'package:foody/core/widgets/error_widget.dart';
 import 'package:foody/core/widgets/form_label_field_widget.dart';
 import 'package:foody/core/widgets/indicator.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ class ProfileScreen extends GetView<GetUserProfileController> {
 
     return Obx(() {
       if (controller.errorMessage.isNotEmpty) {
-        return Center(child: Text(controller.errorMessage.value));
+        return errorWidget(errorMessage: controller.errorMessage.value);
       }
       return WrapperIndicator(
         loading: controller.isLoading.value,

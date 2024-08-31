@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:foody/Features/home/presentation/manger/home_navigation_state.dart';
 import 'package:foody/Features/order/domain/entities/add_order_response_entity.dart';
 import 'package:foody/Features/order/presentation/manger/add_new_order_state.dart';
@@ -10,6 +11,7 @@ import 'package:foody/core/constants/colors.dart';
 import 'package:foody/core/constants/constants.dart';
 import 'package:foody/core/constants/radius.dart';
 import 'package:foody/core/constants/spacing.dart';
+import 'package:foody/core/widgets/error_widget.dart';
 import 'package:foody/core/widgets/indicator.dart';
 import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
@@ -39,7 +41,26 @@ class LastedOrders extends GetView<GetUserOrdersController> {
   Widget build(BuildContext context) {
     return Obx(() {
       if (controller.errorMessage.isNotEmpty) {
-        return Center(child: Text(controller.errorMessage.value));
+        return errorWidget(errorMessage: controller.errorMessage.value);
+      }
+
+      if (controller.userOrders.isEmpty) {
+        return Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SvgPicture.asset("assets/images/empty_cart.svg",
+                width: 200.w, height: 200.w, fit: BoxFit.cover),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              'There is no Previous Orders',
+              style: TextStyle(fontSize: 15.sp),
+            )
+          ],
+        ));
       }
 
       return WrapperIndicator(

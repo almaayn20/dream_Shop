@@ -28,6 +28,7 @@ class AppServices extends GetxService {
     AppPrint.printInfo(":::::::::::::Initialize App services");
 
     Get.lazyPut(() => AppLocallcontroller());
+
     Get.lazyPut(() => ApiService(), fenix: true);
     ProfileBinding().dependencies();
     Get.find<GetUserProfileController>();
