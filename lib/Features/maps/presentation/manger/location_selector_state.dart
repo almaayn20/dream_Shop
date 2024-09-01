@@ -20,6 +20,12 @@ class LocationSelectorController extends GetxController {
   void onInit() async {
     super.onInit();
 
+    geocodedSelectedLocation = {
+      'street': 'No location selected',
+      'locality': '',
+      'postalCode': '',
+      'country': 'No location selected',
+    };
     selectedLocation.value = LatLng(
         double.parse(
             getUserProfileController.profileEntity.value!.userAddress!.lat!),
@@ -32,7 +38,6 @@ class LocationSelectorController extends GetxController {
     await getAddressFromLatLng(
         selectedLocation.value!.latitude, selectedLocation.value!.longitude);
     locationService = LocationService();
-    updateMyLocation();
   }
 
   Future<void> getAddressFromLatLng(double latitude, double longitude) async {
@@ -44,10 +49,10 @@ class LocationSelectorController extends GetxController {
       Placemark place = placemarks[0];
 
       geocodedSelectedLocation = {
-        'street': place.street!,
+        'street': place.street ?? 'No location selected',
         'locality': place.locality!,
         'postalCode': place.postalCode!,
-        'country': place.country!,
+        'country': place.country ?? 'No location selected',
       };
       isLoading.value = false;
     } catch (e) {

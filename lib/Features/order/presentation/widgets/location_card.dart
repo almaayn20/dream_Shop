@@ -15,7 +15,9 @@ import 'package:foody/screen_routes.dart';
 import 'package:get/get.dart';
 
 class LocationCard extends GetView<AddNewOrderController> {
-  final LocationSelectorController locationSelectorController = Get.find();
+  final LocationSelectorController locationSelectorController;
+
+  LocationCard({super.key, required this.locationSelectorController});
   @override
   Widget build(BuildContext context) {
     return Container(

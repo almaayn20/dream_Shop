@@ -86,14 +86,6 @@ class SettingsScreen extends GetView<SettingsController> {
                       label: "My Profile",
                       onTap: () => Get.toNamed(ScreensRoutes.profileScreen),
                     ),
-                    const SettingsItem(
-                      icon: "assets/icons/language.svg",
-                      label: "Language",
-                    ),
-                    const SettingsItem(
-                      icon: "assets/icons/theme.svg",
-                      label: "Theme",
-                    ),
                     SettingsItem(
                         icon: "assets/icons/mail.svg",
                         label: "Contact Us",

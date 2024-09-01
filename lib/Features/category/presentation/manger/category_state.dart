@@ -34,7 +34,6 @@ class CategoriesController extends GetxController {
     currentCategoryId = id;
     //  categories.refresh();
     productsByCategoryController.fetchProductsByCategory(currentCategoryId);
-    printInfo(info: id.toString());
   }
 
   Future<void> fetchCategories() async {

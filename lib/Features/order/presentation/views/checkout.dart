@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:foody/Features/home/presentation/manger/home_navigation_state.dart';
+import 'package:foody/Features/maps/presentation/manger/location_selector_state.dart';
 import 'package:foody/Features/order/domain/entities/order_entity.dart';
 import 'package:foody/Features/order/presentation/manger/add_new_order_state.dart';
 import 'package:foody/Features/order/presentation/widgets/build_summary_row.dart';
@@ -24,6 +25,7 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
 
   final PaymentController paymentController = Get.find();
   final GetUserProfileController profileController = Get.find();
+  final LocationSelectorController locationSelectorController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,9 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
                   color: AppColors.dark80,
                 ),
               ),
-              LocationCard(),
+              LocationCard(
+                locationSelectorController: locationSelectorController,
+              ),
               SizedBox(height: 10.0.h),
               Text(
                 'Payment Method:',
@@ -92,6 +96,11 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
                   isTotal: true),
               //   Spacer(),
               SizedBox(height: 20.0.h),
+              Text('Test Payment Card : '),
+              Text('card no: 4242 4242 4242 4242'),
+              Text('card date: use any valid date like :  12/34'),
+              Text('cvc :  use any three digits'),
+              Text('Use any value you like for other form fields.'),
 
               // complete purchace Button
             ],
@@ -100,44 +109,52 @@ class CheckoutScreen extends GetView<AddNewOrderController> {
             height: 60.0.h,
             child: ElevatedButton(
               onPressed: () async {
-                String totalPrice = ((controller.getTotalPrice() + 1.00) * 100)
-                    .round()
-                    .toString();
-                PaymentIntentInputModel paymentIntentInputModel =
-                    PaymentIntentInputModel(
-                  amount: totalPrice,
-                  currency: 'USD',
-                  cusomerId: 'cus_Qgb7uqO7CklSbO',
-                );
-                await paymentController
-                    .makeStripePayment(paymentIntentInputModel);
-                if (paymentController.errorMessage.isNotEmpty) {
-                  snackBarCustom(
-                      context, paymentController.errorMessage.value, '', () {});
-                  //   paymentController.errorMessage.value = '';
-                } else {
-                  String orderDate =
-                      DateFormat('yyyy-MM-dd').format(DateTime.now());
-                  OrderEntity orderEntity = OrderEntity(
-                      userID: profileController.profileEntity.value!.userId!,
-                      orderDate: orderDate,
-                      orderProducts: controller.orderProducts);
-                  await controller.addNewOrder(orderEntity);
-                  if (controller.errorMessage.isNotEmpty) {
-                    snackBarCustom(
-                        context, controller.errorMessage.value, '', () {});
+                if (locationSelectorController
+                        .geocodedSelectedLocation['country'] !=
+                    'No location selected') {
+                  String totalPrice =
+                      ((controller.getTotalPrice() + 1.00) * 100)
+                          .round()
+                          .toString();
+                  PaymentIntentInputModel paymentIntentInputModel =
+                      PaymentIntentInputModel(
+                    amount: totalPrice,
+                    currency: 'USD',
+                    cusomerId: 'cus_Qgb7uqO7CklSbO',
+                  );
+                  await paymentController
+                      .makeStripePayment(paymentIntentInputModel);
+                  if (paymentController.errorMessage.isNotEmpty) {
+                    snackBarCustom(context,
+                        paymentController.errorMessage.value, '', () {});
+                    //   paymentController.errorMessage.value = '';
                   } else {
-                    snackBarCustom(
-                        context, 'Order Completed Successfuly', '', () {});
-                    homeNavigationController.onItemTapped(2);
-                    //      Get.off(ScreensRoutes.userOrdersScreen);
-                    Get.offNamedUntil(
-                      ScreensRoutes.homeScreen,
-                      (route) =>
-                          route.isFirst ||
-                          Get.previousRoute == Get.currentRoute,
-                    );
+                    String orderDate =
+                        DateFormat('yyyy-MM-dd').format(DateTime.now());
+                    OrderEntity orderEntity = OrderEntity(
+                        userID: profileController.profileEntity.value!.userId!,
+                        orderDate: orderDate,
+                        orderProducts: controller.orderProducts);
+                    await controller.addNewOrder(orderEntity);
+                    if (controller.errorMessage.isNotEmpty) {
+                      snackBarCustom(
+                          context, controller.errorMessage.value, '', () {});
+                    } else {
+                      snackBarCustom(
+                          context, 'Order Completed Successfuly', '', () {});
+                      homeNavigationController.onItemTapped(2);
+                      //      Get.off(ScreensRoutes.userOrdersScreen);
+                      Get.offNamedUntil(
+                        ScreensRoutes.homeScreen,
+                        (route) =>
+                            route.isFirst ||
+                            Get.previousRoute == Get.currentRoute,
+                      );
+                    }
                   }
+                } else {
+                  snackBarCustom(
+                      context, 'Please select a location', '', () {});
                 }
               },
               style: ElevatedButton.styleFrom(

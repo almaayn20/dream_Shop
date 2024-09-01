@@ -12,6 +12,7 @@ class LocationSelectorScreen extends GetView<LocationSelectorController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.updateMyLocation();
     return Obx(() {
       return Stack(
         children: [

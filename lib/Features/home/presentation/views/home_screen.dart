@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foody/Features/category/presentation/manger/category_state.dart';
 import 'package:foody/Features/category/presentation/views/categories_view.dart';
 import 'package:foody/Features/home/presentation/manger/home_state.dart';
 import 'package:foody/Features/home/presentation/widgets/products_slider.dart';
@@ -23,23 +24,28 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 class HomeScreen extends GetView<HomeController> {
   HomeScreen({Key? key}) : super(key: key);
 
+  final CategoriesController categoriesController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return Scaffold(
-        appBar: _buildAppBar(),
-        backgroundColor: AppColors.white100,
-        resizeToAvoidBottomInset: true,
-        body: GestureDetector(
-          onPanDown: (_) {
-            FocusManager.instance.primaryFocus?.unfocus();
-          },
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: controller.errorMessage.value.isNotEmpty
-              ? errorWidget(errorMessage: controller.errorMessage.value)
-              : SingleChildScrollView(
-                  child: _buildContent(context),
-                ),
+      return WrapperIndicator(
+        loading: categoriesController.isLoading.value,
+        child: Scaffold(
+          appBar: _buildAppBar(),
+          backgroundColor: AppColors.white100,
+          resizeToAvoidBottomInset: true,
+          body: GestureDetector(
+            onPanDown: (_) {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: controller.errorMessage.value.isNotEmpty
+                ? errorWidget(errorMessage: controller.errorMessage.value)
+                : SingleChildScrollView(
+                    child: _buildContent(context),
+                  ),
+          ),
         ),
       );
     });
