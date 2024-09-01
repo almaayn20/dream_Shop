@@ -2,7 +2,9 @@
 
 This Flutter-based eCommerce app provides a seamless shopping experience with a focus on clean architecture, best practices, and elegant design. It supports all the essential eCommerce operations, including product retrieval, cart management, and checkout. The app integrates various features and technologies to deliver a robust solution.
 
-Here are improved titles:
+**Note:** Due to API restrictions, the **Create Account** feature is not available. You can log in using the provided stored account credentials, which are displayed on the login screen.
+
+**Note:** Due to API restrictions, the API does not store new orders. Instead, it returns the same object that was sent.
 
 ### Key Features
 
@@ -42,7 +44,7 @@ Here are improved titles:
   
 ### Architecture & Code Quality
 
-The app is built using clean architecture principles, emphasizing separation of concerns and maintainability. Following best practices in clean code, the project is well-structured and easy to navigate, making it easy to extend and maintain.
+The app uses clean architecture principles, emphasizing separation of concerns and maintainability. Following best practices in clean code, the project is well-structured and easy to navigate, making it easy to extend and maintain.
 
 ### Download Apk
 You can download and install the latest build of the app from the link below:
