@@ -2,6 +2,8 @@
 
 This Flutter-based eCommerce app provides a seamless shopping experience with a focus on clean architecture, best practices, and elegant design. It supports all the essential eCommerce operations, including product retrieval, cart management, and checkout. The app integrates various features and technologies to deliver a robust solution.
 
+![alt text](https://drive.google.com/file/d/13wZFm6asgTbhOUAgYqHmxZGV6-iBBfRG/view?usp=sharing)
+
 **Note:** Due to API restrictions, the **Create Account** feature is not available. You can log in using the provided stored account credentials, which are displayed on the login screen.
 
 **Note:** Due to API restrictions, the API does not store new orders. Instead, it returns the same object that was sent.
