@@ -75,7 +75,7 @@ class LoginContent extends StatelessWidget {
                     if (_formKey.currentState!.validate()) {
                       await controller.login(email.text, password.text);
                       if (AuthBox.isUserLoggedIn()) {
-                        Get.offNamed(ScreensRoutes.homeScreen);
+                        Get.offAllNamed(ScreensRoutes.homeScreen);
                       } else {
                         // controller.errorMessage.value
                         Get.snackbar('Error', 'Invalid email or password');

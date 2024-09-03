@@ -66,7 +66,10 @@ class ProductsSlider extends StatelessWidget {
                   SizedBox(
                     width: 5.w,
                   ),
-                  SvgPicture.asset("assets/icons/arrow_right.svg"),
+                  SvgPicture.asset(
+                    "assets/icons/arrow_right.svg",
+                    color: AppColors.orange100,
+                  ),
                 ],
               ),
             ],
