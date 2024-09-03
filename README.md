@@ -52,7 +52,7 @@ The app uses clean architecture principles, emphasizing separation of concerns a
 
 ### Download Apk
 You can download and install the latest build of the app from the link below:
-Download the Latest Build: [Click here](https://drive.google.com/file/d/1ViQP2pJyOIzBSvIGJ9dOZpagl_zQFuc0/view?usp=sharing)
+Download the Latest Build: [Click here](https://drive.google.com/file/d/1nmfsjmxvkl467I1KP4CuoMIBI4ccN9Hs/view?usp=sharing)
 
 ### Getting Started
 
