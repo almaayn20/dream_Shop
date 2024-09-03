@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
     AppLocallcontroller localeController = Get.find<AppLocallcontroller>();
 
     return ScreenUtilInit(
-      //   designSize: const Size(414, 896),
-      designSize: const Size(375, 812),
+      designSize: const Size(414, 896),
+      //  designSize: const Size(375, 812),
       //     designSize: const Size(336, 727),
       minTextAdapt: true,
       splitScreenMode: true,
