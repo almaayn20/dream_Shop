@@ -11,10 +11,12 @@ class AppLocallcontroller extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    String langCode = SettingsBox.getLanguage();
-    language = langCode == 'sys'
-        ? Get.deviceLocale ?? const Locale('ar')
-        : Locale(langCode);
+    //  String langCode = SettingsBox.getLanguage();
+    // language = langCode == 'sys'
+    //     ? Get.deviceLocale ?? const Locale('ar')
+    //     : Locale(langCode);
+
+    language = const Locale('en');
   }
 
   void changeLanguage(String langCode) {
