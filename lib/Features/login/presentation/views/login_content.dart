@@ -15,13 +15,13 @@ import 'widgets/login_form_widget.dart';
 class LoginContent extends StatelessWidget {
   final LoginController controller;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
   LoginContent({required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController email = TextEditingController();
-    final TextEditingController password = TextEditingController();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -74,10 +74,12 @@ class LoginContent extends StatelessWidget {
                   onPress: () async {
                     if (_formKey.currentState!.validate()) {
                       await controller.login(email.text, password.text);
-                      AuthBox.isUserLoggedIn() == true
-                          ? Get.toNamed(ScreensRoutes.homeScreen)
-                          : snackBarCustom(context,
-                              controller.errorMessage.value, '', () {});
+                      if (AuthBox.isUserLoggedIn()) {
+                        Get.offNamed(ScreensRoutes.homeScreen);
+                      } else {
+                        // controller.errorMessage.value
+                        Get.snackbar('Error', 'Invalid email or password');
+                      }
                     }
                   },
                   title: 'LOGIN',
@@ -96,6 +98,7 @@ class LoginContent extends StatelessWidget {
                   Text('User name : johnd',
                       style: Theme.of(context).textTheme.bodyLarge),
                   Text(r'Password: m38rmF$',
+                      textDirection: TextDirection.ltr,
                       style: Theme.of(context).textTheme.bodyLarge)
                 ],
               )

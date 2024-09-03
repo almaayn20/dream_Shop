@@ -170,7 +170,7 @@ class HomeScreen extends GetView<HomeController> {
                       child: Text(
                         'Dream Shop',
                         style: TextStyle(
-                          fontSize: 22.sp,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w800,
                           color: AppColors.orange100,
                         ),

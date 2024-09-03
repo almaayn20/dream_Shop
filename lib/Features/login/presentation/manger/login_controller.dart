@@ -19,8 +19,8 @@ class LoginController extends GetxController {
 
     result.fold((failure) {
       errorMessage.value = failure.message;
-    }, (auth) {
-      AuthBox.setAuthToken(auth);
+    }, (token) {
+      AuthBox.setAuthToken(token);
       AuthBox.setUserLoggedIn(true);
     });
     isLoading.value = false;
